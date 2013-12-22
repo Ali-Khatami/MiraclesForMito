@@ -5,23 +5,74 @@
 @-o-viewport        { width: device-width; }
 @viewport           { width: device-width; }
 
+@media (min-width: 768px)
+{
+	.navbar > .container .navbar-brand
+	{
+		margin-left: 0px;
+	}
+
+	.navbar-nav.navbar-right:last-child
+	{
+		margin-right: 0px;
+	}
+}
+
 body
 {
 	padding-top: 70px;
 }
 
+img
+{
+	max-width: 100%;
+}
+
 #MainNav
 {
 	min-height: 70px;
+	background-color: #fff;
+	border: 0 none;
 }
 
 	#MainNav .navbar-brand
 	{
-		line-height: 40px; /* To meet the 70px min-height */
+		padding: 0px 10px;
+		background: url("../Images/nav-brand-logo.png") no-repeat 10px 0px;
+		width: 366px;
+		height: 70px;
 	}
 
-	#MainNav .navbar-nav > li > a
+	#MainNav .nav > li > a
 	{
 		padding-top: 25px;
 		padding-bottom: 25px;
+		color: #999;
+		text-transform:	uppercase;
 	}
+
+
+	#MainNav .navbar-toggle
+	{
+		background-color: #3CC3A3;
+		padding: 19px 20px;
+	}
+
+		#MainNav .navbar-toggle .icon-bar
+		{
+			background-color: #fff;
+		}
+
+	#MainNav .nav > li.donate > a
+	{
+		background-color: #3CC3A3;
+		color: #fff;
+		padding-right: 40px;
+		padding-left: 40px;
+	}
+		
+		#MainNav .nav > li > a:hover
+		{
+			background-color: #49d1af;
+			color: #fff;
+		}
