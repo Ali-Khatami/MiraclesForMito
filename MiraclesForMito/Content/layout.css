@@ -32,8 +32,12 @@ img
 {
 	min-height: 70px;
 	background-color: #fff;
-	border: 0 none;
+	border-bottom: 0 none;
 }
+
+	#MainNav > .container > .navbar-collapse {
+		border-bottom: 1px solid #E5E5E5;	
+	}
 
 	#MainNav .navbar-brand
 	{
@@ -47,10 +51,20 @@ img
 	{
 		padding-top: 25px;
 		padding-bottom: 25px;
-		color: #999;
+		font-family: Helvetica, Arial, sans-serif;
+		color: #666;
 		text-transform:	uppercase;
 	}
 
+	#MainNav .nav > li.active {
+		border-bottom: 3px solid #3CC3A3;
+		color: #3CC3A3;
+	}
+
+		#MainNav .nav > li.active > a {
+			padding-bottom: 22px;
+			color: #3CC3A3;
+		}
 
 	#MainNav .navbar-toggle
 	{
@@ -76,3 +90,8 @@ img
 			background-color: #49d1af;
 			color: #fff;
 		}
+
+		#MainNav .nav > li.active > a:hover {
+			background-color: transparent;
+			color: #3CC3A3;
+		} 

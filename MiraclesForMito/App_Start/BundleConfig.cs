@@ -26,6 +26,7 @@ namespace MiraclesForMito
 
 			bundles.Add(
 				new StyleBundle("~/Content/css").Include(
+					"~/Content/common.css",
 					"~/Content/layout.css",
 					"~/Content/main-page.css"
 				)
