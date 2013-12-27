@@ -35,8 +35,14 @@ div.main-page-footer {
 	padding: 40px
 }
 
-div.main-page-footer .fa {
+div.main-page-footer a .fa {
 	font-size: 2em;
+	margin: 0px 10px;
+	color: #fff;
+}
+
+div.main-page-footer a .fa:hover {
+	color: #ccc;
 }
 
 div.main-page-footer .page-header {
@@ -53,6 +59,10 @@ div.main-page-footer form button[type="submit"] {
 	color: #eee;
 	border-radius: 0px;
 	border-color: #27b585;
+}
+
+div.main-page-footer form button[type="submit"]:hover {
+	background-color: #27b585;
 }
 
 div.main-page-footer .foot-notes {
