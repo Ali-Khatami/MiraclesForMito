@@ -35,6 +35,10 @@ div.main-page-footer {
 	padding: 40px
 }
 
+div.main-page-footer .row {
+	margin: 0px 0px 20px 0px;
+}
+
 div.main-page-footer a .fa {
 	font-size: 2em;
 	margin: 0px 10px;
