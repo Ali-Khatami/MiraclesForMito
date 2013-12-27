@@ -49,8 +49,10 @@ div.main-page-footer form {
 
 div.main-page-footer form button[type="submit"] {
 	width: 100%;
-	background-color: #bbb;
-	border-color: #00ff21;
+	background-color: #222;
+	color: #eee;
+	border-radius: 0px;
+	border-color: #00ff90;
 }
 
 div.main-page-footer .foot-notes {
