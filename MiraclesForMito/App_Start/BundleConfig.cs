@@ -12,7 +12,8 @@ namespace MiraclesForMito
 				new ScriptBundle("~/bundles/js/vendor").Include(
 					"~/Scripts/jquery-{version}.js",
 					"~/Scripts/jquery-ui-{version}.js",
-					"~/Scripts/bootstrap.js"
+					"~/Scripts/bootstrap.js",
+                    "~/Scripts/navigation.js"
 				)
 			);
 
