@@ -21,10 +21,56 @@ div.about-page-header h1 {
 	color: #FB5267;
 }
 
-div.about-page-header span.glyphicon {
+div.about-page-header .fa.fa-heart-o {
 	font-size: 80px;
 	display: block;
 	float: left;
 	margin-right: 20px;
 	color: #FB5267;
+}
+
+div.main-page-footer {
+	background-color: #222;
+	color: #eee;
+	padding: 40px
+}
+
+div.main-page-footer .row {
+	margin: 0px 0px 20px 0px;
+}
+
+div.main-page-footer a .fa {
+	font-size: 2em;
+	margin: 0px 10px;
+	color: #fff;
+}
+
+div.main-page-footer a .fa:hover {
+	color: #ccc;
+}
+
+div.main-page-footer .page-header {
+	margin: 0px 0px 20px 0px;
+}
+
+div.main-page-footer form {
+	margin: 20px 0px 0px 0px;
+}
+
+div.main-page-footer form button[type="submit"] {
+	width: 100%;
+	background-color: #222;
+	color: #eee;
+	border-radius: 0px;
+	border-color: #27b585;
+}
+
+div.main-page-footer form button[type="submit"]:hover {
+	background-color: #27b585;
+}
+
+div.main-page-footer .foot-notes {
+	border-top: 1px solid #ccc;
+	margin: 40px 0px 0px 0px;
+	padding: 20px 0px 0px 0px;
 }

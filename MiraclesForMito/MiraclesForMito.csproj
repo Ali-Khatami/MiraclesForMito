@@ -161,6 +161,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\common.css" />
+    <Content Include="Content\font-awesome-4.0.3\css\font-awesome.css" />
+    <Content Include="Content\font-awesome-4.0.3\css\font-awesome.min.css" />
+    <Content Include="Content\font-awesome-4.0.3\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\main-page.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -230,6 +233,36 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\font-awesome-4.0.3\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\font-awesome-4.0.3\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\font-awesome-4.0.3\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\font-awesome-4.0.3\fonts\FontAwesome.otf" />
+    <Content Include="Content\font-awesome-4.0.3\less\bordered-pulled.less" />
+    <Content Include="Content\font-awesome-4.0.3\less\core.less" />
+    <Content Include="Content\font-awesome-4.0.3\less\fixed-width.less" />
+    <Content Include="Content\font-awesome-4.0.3\less\font-awesome.less" />
+    <Content Include="Content\font-awesome-4.0.3\less\icons.less" />
+    <Content Include="Content\font-awesome-4.0.3\less\larger.less" />
+    <Content Include="Content\font-awesome-4.0.3\less\list.less" />
+    <Content Include="Content\font-awesome-4.0.3\less\mixins.less" />
+    <Content Include="Content\font-awesome-4.0.3\less\path.less" />
+    <Content Include="Content\font-awesome-4.0.3\less\rotated-flipped.less" />
+    <Content Include="Content\font-awesome-4.0.3\less\spinning.less" />
+    <Content Include="Content\font-awesome-4.0.3\less\stacked.less" />
+    <Content Include="Content\font-awesome-4.0.3\less\variables.less" />
+    <Content Include="Content\font-awesome-4.0.3\scss\font-awesome.scss" />
+    <Content Include="Content\font-awesome-4.0.3\scss\_bordered-pulled.scss" />
+    <Content Include="Content\font-awesome-4.0.3\scss\_core.scss" />
+    <Content Include="Content\font-awesome-4.0.3\scss\_fixed-width.scss" />
+    <Content Include="Content\font-awesome-4.0.3\scss\_icons.scss" />
+    <Content Include="Content\font-awesome-4.0.3\scss\_larger.scss" />
+    <Content Include="Content\font-awesome-4.0.3\scss\_list.scss" />
+    <Content Include="Content\font-awesome-4.0.3\scss\_mixins.scss" />
+    <Content Include="Content\font-awesome-4.0.3\scss\_path.scss" />
+    <Content Include="Content\font-awesome-4.0.3\scss\_rotated-flipped.scss" />
+    <Content Include="Content\font-awesome-4.0.3\scss\_spinning.scss" />
+    <Content Include="Content\font-awesome-4.0.3\scss\_stacked.scss" />
+    <Content Include="Content\font-awesome-4.0.3\scss\_variables.scss" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Images\nav-brand-logo.png" />
     <Content Include="Images\rainbow-child-hide.png" />
@@ -273,6 +306,7 @@
     <Content Include="Views\Home\Sections\Education.cshtml" />
     <Content Include="Views\Home\Sections\Links.cshtml" />
     <Content Include="Views\Home\Sections\Grants.cshtml" />
+    <Content Include="Views\Home\Sections\Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
