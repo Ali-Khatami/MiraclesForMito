@@ -149,10 +149,17 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminUserController.cs" />
+    <Compile Include="Controllers\BlogPostController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BlogPost.cs" />
+    <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\SiteDB.cs" />
+    <Compile Include="Models\AdminUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -264,7 +271,13 @@
     <Content Include="Content\font-awesome-4.0.3\scss\_stacked.scss" />
     <Content Include="Content\font-awesome-4.0.3\scss\_variables.scss" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Images\calvin-smile.png" />
+    <Content Include="Images\foot-bw.png" />
+    <Content Include="Images\hands-and-crafts.png" />
+    <Content Include="Images\happy-friends.png" />
+    <Content Include="Images\heart-icon.png" />
     <Content Include="Images\nav-brand-logo.png" />
+    <Content Include="Images\proto.png" />
     <Content Include="Images\rainbow-child-hide.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -283,19 +296,6 @@
     </Content>
     <Content Include="Content\layout.css" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Images\accent.png" />
-    <Content Include="Images\bullet.png" />
-    <Content Include="Images\heroAccent.png" />
-    <Content Include="Images\orderedList0.png" />
-    <Content Include="Images\orderedList1.png" />
-    <Content Include="Images\orderedList2.png" />
-    <Content Include="Images\orderedList3.png" />
-    <Content Include="Images\orderedList4.png" />
-    <Content Include="Images\orderedList5.png" />
-    <Content Include="Images\orderedList6.png" />
-    <Content Include="Images\orderedList7.png" />
-    <Content Include="Images\orderedList8.png" />
-    <Content Include="Images\orderedList9.png" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -311,7 +311,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Filters\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
