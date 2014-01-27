@@ -12,6 +12,7 @@ div.main-page-section h1 {
 		font-family: Helvetica, Arial;
 	}
 
+/*Header*/
 div.about-page-header {
 	color: #FB5267;
 }
@@ -29,6 +30,29 @@ div.about-page-header .fa.fa-heart-o {
 	color: #FB5267;
 }
 
+/*Links*/
+div.main-page-section div.useful-resource {
+    height: 190px;
+    margin-bottom: 30px;
+}
+
+div.main-page-section div.useful-resource p.highlight {
+    color: #3CC3A3;
+    font-weight: bold;
+}
+
+div.main-page-section div.useful-resource a {
+    color: #3CC3A3;
+    position: absolute;
+    bottom: 0px;
+    border: #3CC3A3 solid 1px;
+    width: 92%;
+    text-decoration: none;
+    padding: 2px 10px;
+    font-size: 12px;
+}
+
+/*Footer*/
 div.main-page-footer {
 	background-color: #222;
 	color: #eee;
