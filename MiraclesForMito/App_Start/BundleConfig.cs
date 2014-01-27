@@ -47,8 +47,7 @@ namespace MiraclesForMito
 					"~/Content/themes/base/jquery.ui.progressbar.css",
 					"~/Content/themes/base/jquery.ui.theme.css",
 					"~/Content/bootstrap.css",
-					"~/Content/bootstrap-theme.css",
-					"~/Content/font-awesome-4.0.3/css/font-awesome.min.css"
+					"~/Content/bootstrap-theme.css"
 				)
 			);
 		}
