@@ -59,7 +59,7 @@
 
 						// delete the item via AJAX
 						$.ajax({
-							url: "/MiraclesForMito/MiraclesForMito/API/BlogPost/" + jButton.attr("data-postid"),
+							url: "~/API/BlogPost/".ResolveUrl() + jButton.attr("data-postid"),
 							type: "DELETE"
 						})
 						.done(

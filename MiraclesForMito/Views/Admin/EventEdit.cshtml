@@ -65,7 +65,7 @@
 			{
 				e.preventDefault();
 
-				var sUrl = "/MiraclesForMito/MiraclesForMito/API/Event/";
+				var sUrl = "~/API/Event/".ResolveUrl();
 				var sAction = "PUT";
 				// written from serverside.
 				var bIsCreate = @bIsCreate.ToString().ToLower();
@@ -92,7 +92,7 @@
 					function ()
 					{
 						alert(sSuccesMessage);
-						window.location = "/MiraclesForMito/MiraclesForMito/Admin/Events";
+						window.location = "~/Admin/Events".ResolveUrl();
 					}
 				)
 				.fail(function () { alert(sFailMessage) });

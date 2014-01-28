@@ -60,7 +60,7 @@
 
 						// delete the item via AJAX
 						$.ajax({
-							url: "/MiraclesForMito/MiraclesForMito/API/Event/" + jButton.attr("data-eventid"),
+							url: "~/API/Event/".ResolveUrl() + jButton.attr("data-eventid"),
 							type: "DELETE"
 						})
 						.done(

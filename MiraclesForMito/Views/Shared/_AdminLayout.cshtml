@@ -85,7 +85,9 @@
 				</div>
 			</div>
         </div>
-
+		<script type="text/javascript">
+			@Html.Raw(MiraclesForMito.Utilities.Util.ResolveUrlInlineScript)
+		</script>
         @Scripts.Render("~/bundles/js/vendor")
 		@Scripts.Render("~/bundles/js/admin")
         @RenderSection("scripts", required: false)
