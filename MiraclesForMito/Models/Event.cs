@@ -17,7 +17,7 @@ namespace MiraclesForMito.Models
 		/// <summary>
 		/// The start date of the event
 		/// </summary>
-		public DateTime StartDate { get; set; }
+		public DateTime? StartDate { get; set; }
 
 		/// <summary>
 		/// The end date of the event.

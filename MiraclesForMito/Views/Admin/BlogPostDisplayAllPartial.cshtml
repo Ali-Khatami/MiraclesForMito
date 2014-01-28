@@ -1,0 +1,10 @@
+﻿@model MiraclesForMito.Models.BlogPost
+
+<div class="row">
+	<div class="blog-post-item col-md-12 col-lg-12">
+		<h3>@Model.Title</h3>
+		<p>@Html.Raw(Model.Content)</p>
+		<a class="btn btn-primary btn-medium" href="~/Admin/BlogPostEdit/@Model.ID">Edit</a>
+		<a class="btn btn-danger btn-medium delete-post" data-posttitle="@Model.Title" data-postid="@Model.ID">Delete</a>
+	</div>
+</div>

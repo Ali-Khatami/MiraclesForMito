@@ -4,8 +4,10 @@ Navigation.prototype.init = function () {
     this._bindEvents();
 };
 
-Navigation.prototype._bindEvents = function () {
-    $('.scroller').on(
+Navigation.prototype._bindEvents = function ()
+{
+	// doesn't apply to admin section
+    $('#MainNav').not('.admin').find('ul.scroller').on(
         'click',
         'a',
         $.proxy(function (e) {

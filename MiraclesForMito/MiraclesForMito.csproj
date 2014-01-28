@@ -149,6 +149,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AdminUserController.cs" />
     <Compile Include="Controllers\BlogPostController.cs" />
     <Compile Include="Controllers\EventController.cs" />
@@ -279,6 +280,7 @@
     <Content Include="Images\nav-brand-logo.png" />
     <Content Include="Images\proto.png" />
     <Content Include="Images\rainbow-child-hide.png" />
+    <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
@@ -288,7 +290,9 @@
     <Content Include="Scripts\jquery-ui-1.10.3.min.js" />
     <Content Include="Scripts\modernizr-2.7.1.js" />
     <Content Include="Scripts\navigation.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -308,6 +312,13 @@
     <Content Include="Views\Home\Sections\Links.cshtml" />
     <Content Include="Views\Home\Sections\Grants.cshtml" />
     <Content Include="Views\Home\Sections\Footer.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\Events.cshtml" />
+    <Content Include="Views\Admin\BlogPosts.cshtml" />
+    <Content Include="Views\Admin\EventDisplayAllPartial.cshtml" />
+    <Content Include="Views\Admin\EventEdit.cshtml" />
+    <Content Include="Views\Admin\BlogPostEdit.cshtml" />
+    <Content Include="Views\Admin\BlogPostDisplayAllPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

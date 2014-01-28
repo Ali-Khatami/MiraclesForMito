@@ -1,0 +1,102 @@
+﻿@using MiraclesForMito.Models;
+@model Event
+
+@{
+    ViewBag.Title = "Edit Event";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewBag.Active = "event";
+	Event modelToUse = Model;
+	bool bIsCreate = false;
+	
+	// Model
+	if (modelToUse == null)
+	{
+		modelToUse = new Event(){ ID = -1 };
+		bIsCreate = true;
+		ViewBag.Title = "Create Event";
+	}
+}
+
+<h1>@ViewBag.Title</h1>
+
+<div class="row main-page-section">
+	<div class="col-md-12 col-lg-10 col-md-offset-0 col-lg-offset-1">
+
+		<div class="row">
+			<div class="col-md-12 col-lg-12">
+				<form id="EventEditForm" action="~/API/Event/" method="put" class="form-horizontal" role="form">
+
+					<input type="hidden" id="id" name="id" value="@modelToUse.ID" />
+
+					<div class="form-group">
+						<label for="Name" class="col-sm-2 control-label">Name</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="Name" name="name" placeholder="Name" value="@modelToUse.Name" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="Description" class="col-sm-2 control-label">Description</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" id="Description" name="description" placeholder="Description">@modelToUse.Description</textarea>
+						</div>
+					</div>
+			
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-default">Save Changes</button>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+@section scripts{
+	<script type="text/javascript">
+		$(function ()
+		{
+			var jEventEditForm = $("#EventEditForm");
+
+			jEventEditForm.submit(function (e)
+			{
+				e.preventDefault();
+
+				var sUrl = "/MiraclesForMito/MiraclesForMito/API/Event/";
+				var sAction = "PUT";
+				// written from serverside.
+				var bIsCreate = @bIsCreate.ToString().ToLower();
+				var sSuccesMessage = "Updated!";
+				var sFailMessage = "Failed to update!";
+
+				if (bIsCreate)
+				{
+					sAction = "POST";
+					sSuccesMessage = "Created!";
+					sFailMessage = "Failed to create!";
+				}
+				else
+				{
+					sUrl += $('#id').val();
+				}
+
+				$.ajax({
+					url: sUrl,
+					type: sAction,
+					data: jEventEditForm.serialize()
+				})
+				.done(
+					function ()
+					{
+						alert(sSuccesMessage);
+						window.location = "/MiraclesForMito/MiraclesForMito/Admin/Events";
+					}
+				)
+				.fail(function () { alert(sFailMessage) });
+			});
+		});
+	</script>
+}

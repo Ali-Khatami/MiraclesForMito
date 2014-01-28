@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
-using System.Web.Mvc;
 using MiraclesForMito.Models;
 
 namespace MiraclesForMito.Controllers
@@ -17,7 +13,8 @@ namespace MiraclesForMito.Controllers
 		private SiteDB db = new SiteDB();
 		
 		// PUT api/Event/5 (Update in CRUD)
-		public HttpResponseMessage PutEvent(int id, Event mitoEvent)
+		[HttpPut]
+		public HttpResponseMessage Put(int id, Event mitoEvent)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -44,6 +41,7 @@ namespace MiraclesForMito.Controllers
 		}
 
 		// POST api/Event (Create in CRUD)
+		[HttpPost]
 		public HttpResponseMessage PostEvent(Event mitoEvent)
 		{
 			if (ModelState.IsValid)
@@ -62,6 +60,7 @@ namespace MiraclesForMito.Controllers
 		}
 
 		// DELETE api/Event/5 (Delete in CRUD)
+		[HttpDelete]
 		public HttpResponseMessage DeleteEvent(int id)
 		{
 			Event mitoEvent = db.Events.Find(id);

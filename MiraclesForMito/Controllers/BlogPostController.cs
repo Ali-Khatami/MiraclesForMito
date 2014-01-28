@@ -28,6 +28,9 @@ namespace MiraclesForMito.Controllers
 			{
 				return Request.CreateResponse(HttpStatusCode.BadRequest);
 			}
+			
+			// set the last updated date.
+			post.UpdatedDate = DateTime.Now;
 
 			db.Entry(post).State = EntityState.Modified;
 
@@ -48,6 +51,7 @@ namespace MiraclesForMito.Controllers
 		{
 			if (ModelState.IsValid)
 			{
+				post.InsertDate = DateTime.Now;
 				db.BlogPosts.Add(post);
 				db.SaveChanges();
 

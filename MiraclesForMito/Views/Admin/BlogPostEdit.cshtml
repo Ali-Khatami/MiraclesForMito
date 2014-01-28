@@ -1,0 +1,109 @@
+﻿@using MiraclesForMito.Models;
+@model BlogPost
+
+@{
+    ViewBag.Title = "Edit Blog Post";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewBag.Active = "blog";
+	BlogPost modelToUse = Model;
+	bool bIsCreate = false;
+	
+	// Model
+	if (modelToUse == null)
+	{
+		modelToUse = new BlogPost(){ ID = -1 };
+		bIsCreate = true;
+		ViewBag.Title = "Create Blog Post";
+	}
+}
+
+<h1>@ViewBag.Title</h1>
+
+<div class="row main-page-section">
+	<div class="col-md-12 col-lg-10 col-md-offset-0 col-lg-offset-1">
+
+		<div class="row">
+			<div class="col-md-12 col-lg-12">
+				<form id="BlogPostEditForm" action="~/API/BlogPost/" method="put" class="form-horizontal" role="form">
+
+					<input type="hidden" id="id" name="id" value="@modelToUse.ID" />
+
+					<div class="form-group">
+						<label for="Name" class="col-sm-2 control-label">Name</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="Title" name="title" placeholder="Title" value="@modelToUse.Title" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="Author" class="col-sm-2 control-label">Author</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="Author" name="author" placeholder="Author" value="@modelToUse.Author" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="Content" class="col-sm-2 control-label">Content</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" id="Content" name="content" placeholder="Content">@modelToUse.Content</textarea>
+						</div>
+					</div>
+			
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-default">Save Changes</button>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+@section scripts{
+	<script type="text/javascript">
+		$(function ()
+		{
+			var jEventEditForm = $("#BlogPostEditForm");
+
+			jEventEditForm.submit(function (e)
+			{
+				e.preventDefault();
+
+				var sUrl = "/MiraclesForMito/MiraclesForMito/API/BlogPost/";
+				var sAction = "PUT";
+				// written from serverside.
+				var bIsCreate = @bIsCreate.ToString().ToLower();
+				var sSuccesMessage = "Updated!";
+				var sFailMessage = "Failed to update!";
+
+				if (bIsCreate)
+				{
+					sAction = "POST";
+					sSuccesMessage = "Created!";
+					sFailMessage = "Failed to create!";
+				}
+				else
+				{
+					sUrl += $('#id').val();
+				}
+
+				$.ajax({
+					url: sUrl,
+					type: sAction,
+					data: jEventEditForm.serialize()
+				})
+				.done(
+					function ()
+					{
+						alert(sSuccesMessage);
+						window.location = "/MiraclesForMito/MiraclesForMito/Admin/Events";
+					}
+				)
+				.fail(function () { alert(sFailMessage) });
+			});
+		});
+	</script>
+}

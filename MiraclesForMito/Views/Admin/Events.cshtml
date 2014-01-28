@@ -1,0 +1,91 @@
+﻿@using MiraclesForMito.Models;
+
+@{
+    ViewBag.Title = "Events";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewBag.Active = "event";
+	SiteDB db = new SiteDB();
+}
+
+
+<div class="row">
+	<div class="col-md-12 col-lg-12 col-md-offset-0 col-lg-offset-0 clearfix">
+		<h1 class="clearfix">
+			Events
+			<a class="btn btn-success btn-lg pull-right" href="~/Admin/EventEdit/">
+				Create New Event
+			</a>
+		</h1>
+	</div>
+</div>
+
+<div class="row main-page-section">
+	<div class="col-md-12 col-lg-10 col-md-offset-0 col-lg-offset-1">
+
+		@foreach (Event mitoEvent in db.Events)
+		{
+			Html.RenderPartial("~/Views/Admin/EventDisplayAllPartial.cshtml", mitoEvent);
+		}
+
+		@if (db.Events.Count() == 0)
+		{
+			<h3>Once you have added events, you'll see them here</h3>
+		}
+
+	</div>
+</div>
+
+@section scripts{
+	<script type="text/javascript">
+		$(function(){
+
+			$("body").on(
+				"click.delete_event",
+				"a.delete-event",
+				function (e)
+				{
+					var jButton = $(this);
+
+					// launch an alert just to make sure the user actually wants to delete this item
+					var bDelete = confirm("Are you sure you want to delete '" + jButton.attr("data-eventname") + "'?");
+
+					// only continue if they actually want to delete it
+					if (bDelete)
+					{
+						// grab the container element
+						var jEventContainer = jButton.closest("div.event-item");
+
+						// add a class that we can use to fade out the item or show HTML
+						jEventContainer.addClass("deleting");
+
+						// delete the item via AJAX
+						$.ajax({
+							url: "/MiraclesForMito/MiraclesForMito/API/Event/" + jButton.attr("data-eventid"),
+							type: "DELETE"
+						})
+						.done(
+							function ()
+							{
+								// fade out the item then delete after its been faded
+								jEventContainer.fadeOut(
+									400,
+									function ()
+									{
+										jEventContainer.remove();
+									}
+								);
+							}
+						)
+						.fail(
+							function ()
+							{
+								alert("Failed to delete!");
+								jEventContainer.removeClass("deleting");
+							}
+						);
+					}
+				}
+			);
+		});
+	</script>
+}

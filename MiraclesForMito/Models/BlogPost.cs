@@ -27,12 +27,12 @@ namespace MiraclesForMito.Models
 		/// <summary>
 		/// The date the post was created.
 		/// </summary>
-		public DateTime InsertDate { get; set; }
+		public DateTime? InsertDate { get; set; }
 
 		/// <summary>
 		/// Last time the post was updated.
 		/// </summary>
-		public DateTime UpdatedDate { get; set; }
+		public DateTime? UpdatedDate { get; set; }
 
 		/// <summary>
 		/// Allows users to link to the post specfically.
