@@ -174,6 +174,9 @@
 				.fail(function () { alert(sFailMessage) });
 			});
 
+			// the base url in hosted environments gets a little screwy
+			tinyMCE.baseURL = '~/Scripts/tinymce'.ResolveUrl();
+
 			tinymce.init({
 				selector: "#Description",
 				plugins: [
