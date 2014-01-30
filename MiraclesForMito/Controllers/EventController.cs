@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using MiraclesForMito.Models;
+using System.Linq;
 
 namespace MiraclesForMito.Controllers
 {
@@ -70,6 +71,28 @@ namespace MiraclesForMito.Controllers
 				return Request.CreateResponse(HttpStatusCode.NotFound);
 			}
 
+			// We need to find all blog posts with this event and clear their event link
+			var posts = db.BlogPosts.Where(post => post.LinkedEvent != null && post.LinkedEvent.ID == id);
+
+			if (posts != null && posts.Count() > 0)
+			{
+				foreach (var post in posts)
+				{
+					// set the value of each post's linked event to null 
+					post.LinkedEvent = null;
+				}
+			}
+
+			try
+			{
+				db.SaveChanges();
+			}
+			catch (DbUpdateConcurrencyException ex)
+			{
+				return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+			}
+
+			// once we have correctly removed the linked instances we can safely remove the event
 			db.Events.Remove(mitoEvent);
 
 			try

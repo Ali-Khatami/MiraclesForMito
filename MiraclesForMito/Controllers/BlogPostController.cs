@@ -52,6 +52,7 @@ namespace MiraclesForMito.Controllers
 			if (ModelState.IsValid)
 			{
 				post.InsertDate = DateTime.Now;
+				post.UpdatedDate = DateTime.Now;
 				db.BlogPosts.Add(post);
 				db.SaveChanges();
 

@@ -42,11 +42,16 @@ namespace MiraclesForMito.Models
 		/// <summary>
 		/// Determines whether or not the blog post is published.
 		/// </summary>
-		public bool Published { get; set; }
+		public bool? Published { get; set; }
 
 		/// <summary>
 		/// An event if you want to link to one.
 		/// </summary>
-		public virtual Event EventID { get; set; }
+		public virtual Event LinkedEvent { get; set; }
+
+		/// <summary>
+		/// The ID for the linked event
+		/// </summary>
+		public int? LinkedEventID { get; set; }
 	}
 }

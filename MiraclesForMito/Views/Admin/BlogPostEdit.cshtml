@@ -2,8 +2,8 @@
 @model BlogPost
 
 @{
-    ViewBag.Title = "Edit Blog Post";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewBag.Title = "Edit Blog Post";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
 	ViewBag.Active = "blog";
 	BlogPost modelToUse = Model;
 	bool bIsCreate = false;
@@ -15,6 +15,8 @@
 		bIsCreate = true;
 		ViewBag.Title = "Create Blog Post";
 	}
+
+	SiteDB db = new SiteDB();
 }
 
 <h1>@ViewBag.Title</h1>
@@ -43,15 +45,54 @@
 					</div>
 
 					<div class="form-group">
+						<label for="SEOLink" class="col-sm-2 control-label">SEO Link</label>
+						<div class="col-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon">http://@Request.Url.Host/</span>
+								<input type="text" class="form-control" id="SEOLink" name="SEOLink" placeholder="SEOLink" value="@modelToUse.SEOLink" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
 						<label for="Content" class="col-sm-2 control-label">Content</label>
 						<div class="col-sm-10">
-							<textarea class="form-control" id="Content" name="content" placeholder="Content">@modelToUse.Content</textarea>
+							<textarea class="form-control" id="Content" name="content" placeholder="Content">@(modelToUse.Content ?? "")</textarea>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="LinkedEventID" class="col-sm-2 control-label">Linked Event</label>
+						<div class="col-sm-10">
+							<select id="LinkedEventID" name="LinkedEventID" class="form-control">
+								@if (db.Events.Count() > 0)
+								{
+									<option value="">No event link</option>
+								}
+								else
+								{
+									<option value="">No events available</option>
+								}
+								@foreach (Event mitoEvent in db.Events)
+								{
+									<option value="@mitoEvent.ID" @if(modelToUse.LinkedEvent != null && mitoEvent.ID == modelToUse.LinkedEvent.ID) { @Html.Raw("selected=\"selected\""); }>@mitoEvent.Name</option>
+								}
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="Published" class="col-sm-2 control-label">Published</label>
+						<div class="col-sm-10">
+							<input id="Published" name="Published" type="checkbox" @if (modelToUse.Published.GetValueOrDefault(false)) { Html.Raw("checked=\"checked\""); } />
+							<span class="help-block">Toggle the checkbox above to determine whether or not the blog post shows up on the site.</span>
 						</div>
 					</div>
 			
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-default">Save Changes</button>
+							<button type="submit" class="btn btn-success">@(bIsCreate ? "Save Blog Post" : "Save Changes")</button>
+							<button id="CancelChanges" type="button" class="btn btn-danger">Cancel</button>
 						</div>
 					</div>
 
@@ -67,6 +108,15 @@
 		$(function ()
 		{
 			var jEventEditForm = $("#BlogPostEditForm");
+
+			$("#CancelChanges").on("click", function(){
+				var bConfirmCancel = confirm("Are you sure you want to cancel? Any changes made will not be saved.");
+
+				if(bConfirmCancel)
+				{
+					window.location = "~/Admin/BlogPosts".ResolveUrl();
+				}
+			});
 
 			jEventEditForm.submit(function (e)
 			{
@@ -90,10 +140,17 @@
 					sUrl += $('#id').val();
 				}
 
+				var ajaxData = jEventEditForm.serialize();
+
+				// the serialize method doesn't specify true or false so this is a quick fix for that
+				ajaxData = ajaxData.replace("Published=on", "Published=true").replace("Published=off", "Published=false");
+
+				console.log(ajaxData);
+
 				$.ajax({
 					url: sUrl,
 					type: sAction,
-					data: jEventEditForm.serialize()
+					data: ajaxData
 				})
 				.done(
 					function ()
