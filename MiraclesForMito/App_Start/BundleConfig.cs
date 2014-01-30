@@ -19,6 +19,7 @@ namespace MiraclesForMito
 
 			bundles.Add(
 				new ScriptBundle("~/bundles/js/admin").Include(
+					"~/Scripts/tinymce/tinymce.min.js",
 					"~/Scripts/admin.js"
 				)
 			);

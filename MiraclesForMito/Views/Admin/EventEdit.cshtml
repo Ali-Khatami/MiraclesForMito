@@ -37,8 +37,70 @@
 
 					<div class="form-group">
 						<label for="Description" class="col-sm-2 control-label">Description</label>
-						<div class="col-sm-10">
+						<div class="col-sm-8">
 							<textarea class="form-control" id="Description" name="description" placeholder="Description">@modelToUse.Description</textarea>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="StartDate" class="col-sm-2 control-label">Start Date</label>
+						<div class="col-sm-2">
+							<input type="text" class="form-control" id="StartDate" name="StartDate" placeholder="Start Date" value="@modelToUse.StartDate" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="EndDate" class="col-sm-2 control-label">End Date</label>
+						<div class="col-sm-2">
+							<input type="text" class="form-control" id="EndDate" name="EndDate" placeholder="End Date" value="@modelToUse.EndDate" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="Address" class="col-sm-2 control-label">Address</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="Address" name="Address" placeholder="Address" value="@modelToUse.Address" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="City" class="col-sm-2 control-label">City/State/ZIP</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="City" name="City" placeholder="City" value="@modelToUse.City" />
+						</div>
+						<div class="col-sm-2">
+							<input type="text" class="form-control" id="State" name="State" placeholder="State" value="@modelToUse.State" />
+						</div>
+						<div class="col-sm-2">
+							<input type="text" class="form-control" id="Zip" name="Zip" placeholder="Zip" value="@modelToUse.Zip" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Contact Info</label>
+						<div class="col-sm-10">
+							<span class="help-block">The information below is the person or company to contact about event details.</span>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="ContactName" class="col-sm-2 control-label">Person/Company</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="ContactName" name="ContactName" placeholder="ContactName" value="@modelToUse.ContactName" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="ContactEmail" class="col-sm-2 control-label">Email</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="ContactEmail" name="ContactEmail" placeholder="ContactEmail" value="@modelToUse.ContactEmail" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="ContactNumber" class="col-sm-2 control-label">Number</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="ContactNumber" name="ContactNumber" placeholder="ContactNumber" value="@modelToUse.ContactNumber" />
 						</div>
 					</div>
 			
@@ -49,65 +111,6 @@
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label for="StartDate" class="col-sm-2 control-label">Start Date</label>
-						<div class="col-sm-2">
-							<input type="text" class="form-control" id="StartDate" name="StartDate" placeholder="StartDate" value="@modelToUse.StartDate" />
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="EndDate" class="col-sm-2 control-label">End Date</label>
-						<div class="col-sm-2">
-							<input type="text" class="form-control" id="EndDate" name="EndDate" placeholder="EndDate" value="@modelToUse.EndDate" />
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="Address1" class="col-sm-2 control-label">Address</label>
-						<div class="col-sm-6">
-							<input type="text" class="form-control" id="Address1" name="Address1" placeholder="Address1" value="@modelToUse.Address1" />
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="Address2" class="col-sm-2 control-label">Address (cont'd.)</label>
-						<div class="col-sm-6">
-							<input type="text" class="form-control" id="Address2" name="Address2" placeholder="Address2" value="@modelToUse.Address2" />
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="City" class="col-sm-2 control-label">City</label>
-						<div class="col-sm-4">
-							<input type="text" class="form-control" id="City" name="City" placeholder="City" value="@modelToUse.City" />
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="State" class="col-sm-2 control-label">State</label>
-						<div class="col-sm-4">
-							<input type="text" class="form-control" id="State" name="State" placeholder="State" value="@modelToUse.State" />
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="Zip" class="col-sm-2 control-label">Zip</label>
-						<div class="col-sm-2">
-							<input type="text" class="form-control" id="Zip" name="Zip" placeholder="Zip" value="@modelToUse.Zip" />
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Contact Info</label>
-					</div>
-
-					<div class="form-group">
-						<label for="ContactNumber" class="col-sm-2 control-label">Person/Company</label>
-						<div class="col-sm-2">
-							<input type="text" class="form-control" id="Zip" name="Zip" placeholder="Zip" value="@modelToUse.Zip" />
-						</div>
-					</div>
 
 				</form>
 			</div>
@@ -153,6 +156,9 @@
 					sUrl += $('#id').val();
 				}
 
+				//set the value to the content of the tinyMCE editor
+				$("#Description").val(tinymce.activeEditor.getContent());
+
 				$.ajax({
 					url: sUrl,
 					type: sAction,
@@ -167,6 +173,18 @@
 				)
 				.fail(function () { alert(sFailMessage) });
 			});
+
+			tinymce.init({
+				selector: "#Description",
+				plugins: [
+					"advlist autolink lists link image charmap print preview anchor",
+					"searchreplace visualblocks code fullscreen",
+					"insertdatetime media table contextmenu paste"
+				],
+				menubar: false,
+				toolbar: "undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+			});
+
 		});
 	</script>
 }

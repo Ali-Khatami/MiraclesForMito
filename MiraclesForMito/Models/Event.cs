@@ -25,14 +25,9 @@ namespace MiraclesForMito.Models
 		public DateTime? EndDate { get; set; }
 
 		/// <summary>
-		/// The first line in the address
+		/// The address of the event
 		/// </summary>
-		public string Address1 { get; set; }
-
-		/// <summary>
-		/// The second line in the address
-		/// </summary>
-		public string Address2 { get; set; }
+		public string Address { get; set; }
 
 		/// <summary>
 		/// City where the event is taking place
@@ -58,6 +53,11 @@ namespace MiraclesForMito.Models
 		/// Person or company to contact
 		/// </summary>
 		public string ContactName { get; set; }
+
+		/// <summary>
+		/// Person or company's email to contact them at
+		/// </summary>
+		public string ContactEmail { get; set; }
 
 		/// <summary>
 		/// The event description

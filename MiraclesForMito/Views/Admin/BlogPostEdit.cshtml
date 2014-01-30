@@ -84,7 +84,7 @@
 					<div class="form-group">
 						<label for="Published" class="col-sm-2 control-label">Published</label>
 						<div class="col-sm-10">
-							<input id="Published" name="Published" type="checkbox" @if (modelToUse.Published.GetValueOrDefault(false)) { Html.Raw("checked=\"checked\""); } />
+							<input id="Published" name="Published" type="checkbox" @if (modelToUse.Published.GetValueOrDefault(false)) { @("checked"); } />
 							<span class="help-block">Toggle the checkbox above to determine whether or not the blog post shows up on the site.</span>
 						</div>
 					</div>
@@ -140,6 +140,9 @@
 					sUrl += $('#id').val();
 				}
 
+				//set the value to the content of the tinyMCE editor
+				$("#Content").val(tinymce.activeEditor.getContent());
+
 				var ajaxData = jEventEditForm.serialize();
 
 				// the serialize method doesn't specify true or false so this is a quick fix for that
@@ -160,6 +163,18 @@
 					}
 				)
 				.fail(function () { alert(sFailMessage) });
+			});
+
+			tinymce.init({
+				selector: "#Content",
+				plugins: [
+					"advlist autolink lists link image charmap print preview anchor",
+					"searchreplace visualblocks code fullscreen",
+					"insertdatetime media table contextmenu paste"
+				],
+				height: 300,
+				menubar: false,
+				toolbar: "undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
 			});
 		});
 	</script>
