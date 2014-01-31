@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -12,17 +13,26 @@ namespace MiraclesForMito.Models
 		/// <summary>
 		/// The title for the blog post
 		/// </summary>
+		[Required]
 		public string Title { get; set; }
-
-		/// <summary>
-		/// The content of the blog post
-		/// </summary>
-		public string Content { get; set; }
 
 		/// <summary>
 		/// The author of the post.
 		/// </summary>
+		[Required]
 		public string Author { get; set; }
+
+		/// <summary>
+		/// Allows users to link to the post specfically.
+		/// </summary>
+		[Required]
+		public string SEOLink { get; set; }
+
+		/// <summary>
+		/// The content of the blog post
+		/// </summary>
+		[Required]
+		public string Content { get; set; }
 
 		/// <summary>
 		/// The date the post was created.
@@ -33,11 +43,6 @@ namespace MiraclesForMito.Models
 		/// Last time the post was updated.
 		/// </summary>
 		public DateTime? UpdatedDate { get; set; }
-
-		/// <summary>
-		/// Allows users to link to the post specfically.
-		/// </summary>
-		public string SEOLink { get; set; }
 
 		/// <summary>
 		/// Determines whether or not the blog post is published.

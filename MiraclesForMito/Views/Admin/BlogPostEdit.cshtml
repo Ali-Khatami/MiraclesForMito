@@ -49,7 +49,7 @@
 						<div class="col-sm-10">
 							<div class="input-group">
 								<span class="input-group-addon">http://@Request.Url.Host/</span>
-								<input type="text" class="form-control" id="SEOLink" name="SEOLink" placeholder="SEOLink" value="@modelToUse.SEOLink" />
+								<input type="text" class="form-control disabled" id="SEOLink" name="SEOLink" placeholder="SEOLink" value="@modelToUse.SEOLink" readonly />
 							</div>
 						</div>
 					</div>
@@ -64,7 +64,7 @@
 					<div class="form-group">
 						<label for="LinkedEventID" class="col-sm-2 control-label">Linked Event</label>
 						<div class="col-sm-10">
-							<select id="LinkedEventID" name="LinkedEventID" class="form-control">
+							<select id="LinkedEventID" name="LinkedEventID" class="form-control @if (db.Events.Count() == 0) {@("disabled")}" @if (db.Events.Count() == 0) {@("disabled")}>
 								@if (db.Events.Count() > 0)
 								{
 									<option value="">No event link</option>
@@ -108,15 +108,63 @@
 		$(function ()
 		{
 			var jEventEditForm = $("#BlogPostEditForm");
+			var $seoLinkInput = $("#SEOLink");
+			var iSEOUrlCharacterCutOff = 60;
 
+			// need to make sure they didn't accidently click on cancel
 			$("#CancelChanges").on("click", function(){
+				// launch simple confirm
 				var bConfirmCancel = confirm("Are you sure you want to cancel? Any changes made will not be saved.");
 
+				// if they actually want to quite just take them back to the view all page
 				if(bConfirmCancel)
 				{
 					window.location = "~/Admin/BlogPosts".ResolveUrl();
 				}
 			});
+
+			$("#Title").on(
+				"keyup",
+				function()
+				{
+					setSEOLinkValFromTitle($(this).val(), true);
+				}
+			);
+
+			var setSEOLinkValFromTitle = function(sVal, bCleanUpTrailingHyphens)
+			{
+				// if it has a value we will clean up the title and turn it into a more SEO friendly link
+				if(sVal)
+				{
+					// we only want letters, numbers, hyphens and spaces
+					var sanitizeRE = /[^A-Za-z0-9 \-]/gi;
+
+					// sanitize the value
+					var sSanitized = sVal.replace(sanitizeRE, "");
+
+					// we want the urls to have dashes instead of spaces to make them more SEO Friendly
+					var sSEOFriendly = sSanitized.replace(/ /g, "-");
+
+					// we don't want the url to be longer than 60 characters
+					sSEOFriendly = sSEOFriendly.substring(0, iSEOUrlCharacterCutOff);
+
+					// if the last character is 
+					if(!bCleanUpTrailingHyphens && sSEOFriendly.lastIndexOf("-") == (sSEOFriendly.length - 1))
+					{
+						sSEOFriendly = sSEOFriendly.substring(0, (sSEOFriendly.length - 1));
+					}
+
+					// replace multiple hyphen instances
+					sSEOFriendly = sSEOFriendly.replace(/-{2,}/g,"-");
+
+					// set the SEO Link value to the sanitized string replacing any spaces with dashes
+					$seoLinkInput.val(sSEOFriendly);
+				}
+				else if(!sVal)
+				{
+					$seoLinkInput.val("");
+				}
+			};
 
 			jEventEditForm.submit(function (e)
 			{
@@ -147,8 +195,6 @@
 
 				// the serialize method doesn't specify true or false so this is a quick fix for that
 				ajaxData = ajaxData.replace("Published=on", "Published=true").replace("Published=off", "Published=false");
-
-				console.log(ajaxData);
 
 				$.ajax({
 					url: sUrl,

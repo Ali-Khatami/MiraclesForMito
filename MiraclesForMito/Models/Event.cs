@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -12,11 +13,19 @@ namespace MiraclesForMito.Models
 		/// <summary>
 		/// The actual name of the event
 		/// </summary>
+		[Required]
 		public string Name { get; set; }
+
+		/// <summary>
+		/// The event description
+		/// </summary>
+		[Required]
+		public string Description { get; set; }
 
 		/// <summary>
 		/// The start date of the event
 		/// </summary>
+		[Required]
 		public DateTime? StartDate { get; set; }
 
 		/// <summary>
@@ -58,11 +67,6 @@ namespace MiraclesForMito.Models
 		/// Person or company's email to contact them at
 		/// </summary>
 		public string ContactEmail { get; set; }
-
-		/// <summary>
-		/// The event description
-		/// </summary>
-		public string Description { get; set; }
 
 		/// <summary>
 		/// A Url to link people to.

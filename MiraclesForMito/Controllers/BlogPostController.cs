@@ -32,6 +32,14 @@ namespace MiraclesForMito.Controllers
 			// set the last updated date.
 			post.UpdatedDate = DateTime.Now;
 
+			// check to make sure the SEO link is unique
+			if (db.BlogPosts.FirstOrDefault(currPost => currPost.SEOLink == post.SEOLink) != null)
+			{
+				ModelState.AddModelError("SEOLink", "The SEO link must be unique and cannot match an existing blog post");
+
+				return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+			}
+
 			db.Entry(post).State = EntityState.Modified;
 
 			try

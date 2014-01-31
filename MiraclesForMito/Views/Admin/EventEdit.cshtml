@@ -45,14 +45,64 @@
 					<div class="form-group">
 						<label for="StartDate" class="col-sm-2 control-label">Start Date</label>
 						<div class="col-sm-2">
-							<input type="text" class="form-control" id="StartDate" name="StartDate" placeholder="Start Date" value="@modelToUse.StartDate" />
+							<input type="text" class="form-control" id="StartDateCalendar" name="StartDateCalendar" placeholder="Start Date" value="@((modelToUse.StartDate.HasValue) ? modelToUse.StartDate.Value.ToString("mm/dd/yyyy") : "")" />							
+							<input type="hidden" class="form-control" id="StartDate" name="StartDate" value="@modelToUse.StartDate" />
+						</div>
+						<div class="col-sm-2">
+							<select id="StartDateHour" name="StartDateHour" class="form-control hour-value">
+								@for (int i = 1; i < 13; i++)
+								{
+									<option value="@i">@i</option>
+								}
+							</select>
+						</div>
+						<div class="col-sm-2">
+							<select id="StartDateMinute" name="StartDateMinute" class="form-control minute-value">
+								@for (int i = 0; i < 60; i++)
+								{
+									string sVal = (i < 10) ? string.Format("0{0}", i) : i.ToString();
+
+									<option value="@sVal">@sVal</option>
+								}
+							</select>
+						</div>
+						<div class="col-sm-2">
+							<select id="StartDateTimeOfDay" name="StartDateTimeOfDay" class="form-control time-of-day-value">
+								<option value="AM">AM</option>
+								<option value="PM">PM</option>
+							</select>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="EndDate" class="col-sm-2 control-label">End Date</label>
 						<div class="col-sm-2">
-							<input type="text" class="form-control" id="EndDate" name="EndDate" placeholder="End Date" value="@modelToUse.EndDate" />
+							<input type="text" class="form-control" id="EndDateCalendar" name="EndDateCalendar" placeholder="End Date" value="@((modelToUse.EndDate.HasValue) ? modelToUse.EndDate.Value.ToString("mm/dd/yyyy") : "")" />
+							<input type="hidden" class="form-control" id="EndDate" name="EndDate" value="@modelToUse.EndDate" />							
+						</div>
+						<div class="col-sm-2">
+							<select id="EndDateHour" name="EndDateHour" class="form-control hour-value">
+								@for (int i = 1; i < 13; i++)
+								{
+									<option value="@i">@i</option>
+								}
+							</select>
+						</div>
+						<div class="col-sm-2">
+							<select id="EndDateMinute" name="EndDateMinute" class="form-control minute-value">
+								@for (int i = 0; i < 60; i++)
+								{
+									string sVal = (i < 10) ? string.Format("0{0}", i) : i.ToString();
+
+									<option value="@sVal">@sVal</option>
+								}
+							</select>
+						</div>
+						<div class="col-sm-2">
+							<select id="EndDateTimeOfDay" name="EndDateTimeOfDay" class="form-control time-of-day-value">
+								<option value="AM">AM</option>
+								<option value="PM">PM</option>
+							</select>
 						</div>
 					</div>
 
@@ -86,21 +136,21 @@
 					<div class="form-group">
 						<label for="ContactName" class="col-sm-2 control-label">Person/Company</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control" id="ContactName" name="ContactName" placeholder="ContactName" value="@modelToUse.ContactName" />
+							<input type="text" class="form-control" id="ContactName" name="ContactName" placeholder="Person/Company Name" value="@modelToUse.ContactName" />
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="ContactEmail" class="col-sm-2 control-label">Email</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control" id="ContactEmail" name="ContactEmail" placeholder="ContactEmail" value="@modelToUse.ContactEmail" />
+							<input type="text" class="form-control" id="ContactEmail" name="ContactEmail" placeholder="Contact Email" value="@modelToUse.ContactEmail" />
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="ContactNumber" class="col-sm-2 control-label">Number</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" id="ContactNumber" name="ContactNumber" placeholder="ContactNumber" value="@modelToUse.ContactNumber" />
+							<input type="text" class="form-control" id="ContactNumber" name="ContactNumber" placeholder="Contact Number" value="@modelToUse.ContactNumber" />
 						</div>
 					</div>
 			
@@ -124,15 +174,45 @@
 		$(function ()
 		{
 			var jEventEditForm = $("#EventEditForm");
+			var $startCalendar = $("#StartDateCalendar");
+			var $endCalendar = $("#EndDateCalendar");
+
+			$startCalendar.datepicker({changeYear: true, changeMonth: true});
+			$endCalendar.datepicker({changeYear: true, changeMonth: true});
 
 			$("#CancelChanges").on("click", function(){
 				var bConfirmCancel = confirm("Are you sure you want to cancel? Any changes made will not be saved.");
 
 				if(bConfirmCancel)
 				{
-					window.location = "~/Admin/Event".ResolveUrl();
+					window.location = "~/Admin/Events".ResolveUrl();
 				}
 			});
+
+			function constructDateValue($calendarInput, $inputToSet)
+			{				
+				if(!$calendarInput.val()) { return null; }
+
+				// get the selected date
+				var date = $calendarInput.datepicker("getDate");
+
+				console.log($calendarInput.val(), $calendarInput, $inputToSet, "DatePickerDate: ", date);
+
+				var $formGroup = $calendarInput.closest("div.form-group");
+				var sHourValue = $formGroup.find("select.hour-value").val();
+				var sMinuteValue = $formGroup.find("select.minute-value").val();
+				var iHours = Number(sHourValue);
+				var iMinute = Number(sMinuteValue);
+
+				if($formGroup.find("select.time-of-day-value").val() == "PM")
+				{
+					iHours += 12;
+				}
+
+				console.log("new Date(", date.getYear(), date.getMonth(), date.getDate(), iHours, iMinute, 0, ");");
+				
+				$inputToSet.val("\/Date(" + new Date(date.getYear(), date.getMonth(), date.getDate(), iHours, iMinute, 0).toString() + ")\/");
+			}
 
 			jEventEditForm.submit(function (e)
 			{
@@ -159,6 +239,10 @@
 				//set the value to the content of the tinyMCE editor
 				$("#Description").val(tinymce.activeEditor.getContent());
 
+				// set the calendar values
+				constructDateValue($startCalendar, $("#StartDate"));
+				constructDateValue($endCalendar, $("#EndDate"));
+				
 				$.ajax({
 					url: sUrl,
 					type: sAction,
@@ -185,6 +269,7 @@
 					"insertdatetime media table contextmenu paste"
 				],
 				menubar: false,
+				height: 250,				
 				toolbar: "undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
 			});
 
