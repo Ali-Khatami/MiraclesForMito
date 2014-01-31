@@ -291,6 +291,7 @@
     <Content Include="Scripts\jquery-ui-1.10.3.min.js" />
     <Content Include="Scripts\modernizr-2.7.1.js" />
     <Content Include="Scripts\navigation.js" />
+    <Content Include="Scripts\OADate.js" />
     <Content Include="Scripts\tinymce\jquery.tinymce.min.js" />
     <Content Include="Scripts\tinymce\license.txt" />
     <Content Include="Scripts\tinymce\plugins\advlist\plugin.js" />

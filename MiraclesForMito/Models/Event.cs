@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -29,9 +30,45 @@ namespace MiraclesForMito.Models
 		public DateTime? StartDate { get; set; }
 
 		/// <summary>
+		/// The MS date for saving things.
+		/// </summary>
+		public double? StartDateMS
+		{
+			get
+			{
+				return (StartDate.HasValue) ? (double?)StartDate.Value.ToOADate() : null;
+			}
+			set
+			{
+				if (value.HasValue)
+				{
+					StartDate = DateTime.FromOADate(value.Value);
+				}
+			}
+		}
+
+		/// <summary>
 		/// The end date of the event.
 		/// </summary>
 		public DateTime? EndDate { get; set; }
+
+		/// <summary>
+		/// The MS date for saving things.
+		/// </summary>
+		public double? EndDateMS
+		{
+			get
+			{
+				return (EndDate.HasValue) ? (double?)EndDate.Value.ToOADate() : null;
+			}
+			set
+			{
+				if (value.HasValue)
+				{
+					EndDate = DateTime.FromOADate(value.Value);
+				}
+			}
+		}
 
 		/// <summary>
 		/// The address of the event

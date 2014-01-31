@@ -13,7 +13,8 @@ namespace MiraclesForMito
 					"~/Scripts/jquery-{version}.js",
 					"~/Scripts/jquery-ui-{version}.js",
 					"~/Scripts/bootstrap.js",
-                    "~/Scripts/navigation.js"
+                    "~/Scripts/navigation.js",
+					"~/Scripts/OADate.js"
 				)
 			);
 

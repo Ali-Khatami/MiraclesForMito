@@ -45,8 +45,8 @@
 					<div class="form-group">
 						<label for="StartDate" class="col-sm-2 control-label">Start Date</label>
 						<div class="col-sm-2">
-							<input type="text" class="form-control" id="StartDateCalendar" name="StartDateCalendar" placeholder="Start Date" value="@((modelToUse.StartDate.HasValue) ? modelToUse.StartDate.Value.ToString("mm/dd/yyyy") : "")" />							
-							<input type="hidden" class="form-control" id="StartDate" name="StartDate" value="@modelToUse.StartDate" />
+							<input type="text" class="form-control" id="StartDateCalendar" name="StartDateCalendar" placeholder="Start Date" value="@((modelToUse.StartDate.HasValue) ? modelToUse.StartDate.Value.ToString("MM/dd/yyyy") : "")" />							
+							<input type="hidden" class="form-control" id="StartDateMS" name="StartDateMS" value="@modelToUse.StartDateMS" />
 						</div>
 						<div class="col-sm-2">
 							<select id="StartDateHour" name="StartDateHour" class="form-control hour-value">
@@ -77,8 +77,8 @@
 					<div class="form-group">
 						<label for="EndDate" class="col-sm-2 control-label">End Date</label>
 						<div class="col-sm-2">
-							<input type="text" class="form-control" id="EndDateCalendar" name="EndDateCalendar" placeholder="End Date" value="@((modelToUse.EndDate.HasValue) ? modelToUse.EndDate.Value.ToString("mm/dd/yyyy") : "")" />
-							<input type="hidden" class="form-control" id="EndDate" name="EndDate" value="@modelToUse.EndDate" />							
+							<input type="text" class="form-control" id="EndDateCalendar" name="EndDateCalendar" placeholder="End Date" value="@((modelToUse.EndDate.HasValue) ? modelToUse.EndDate.Value.ToString("MM/dd/yyyy") : "")" />
+							<input type="hidden" class="form-control" id="EndDateMS" name="EndDateMS" value="@modelToUse.EndDateMS" />							
 						</div>
 						<div class="col-sm-2">
 							<select id="EndDateHour" name="EndDateHour" class="form-control hour-value">
@@ -196,8 +196,6 @@
 				// get the selected date
 				var date = $calendarInput.datepicker("getDate");
 
-				console.log($calendarInput.val(), $calendarInput, $inputToSet, "DatePickerDate: ", date);
-
 				var $formGroup = $calendarInput.closest("div.form-group");
 				var sHourValue = $formGroup.find("select.hour-value").val();
 				var sMinuteValue = $formGroup.find("select.minute-value").val();
@@ -208,10 +206,8 @@
 				{
 					iHours += 12;
 				}
-
-				console.log("new Date(", date.getYear(), date.getMonth(), date.getDate(), iHours, iMinute, 0, ");");
 				
-				$inputToSet.val("\/Date(" + new Date(date.getYear(), date.getMonth(), date.getDate(), iHours, iMinute, 0).toString() + ")\/");
+				$inputToSet.val(new Date(date.getFullYear(), date.getMonth(), date.getDate(), iHours, iMinute, 0).toOADate());
 			}
 
 			jEventEditForm.submit(function (e)
@@ -240,8 +236,8 @@
 				$("#Description").val(tinymce.activeEditor.getContent());
 
 				// set the calendar values
-				constructDateValue($startCalendar, $("#StartDate"));
-				constructDateValue($endCalendar, $("#EndDate"));
+				constructDateValue($startCalendar, $("#StartDateMS"));
+				constructDateValue($endCalendar, $("#EndDateMS"));
 				
 				$.ajax({
 					url: sUrl,
