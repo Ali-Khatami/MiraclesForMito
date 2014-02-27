@@ -1,4 +1,12 @@
-﻿<a id="about"></a>
+﻿@using MiraclesForMito.Models;
+
+@{
+	SiteDB db = new SiteDB();
+}
+
+
+
+<a id="about"></a>
 
 <div class="row main-page-image-block">
 	<div class="col-md-12 col-lg-12">
@@ -37,9 +45,11 @@
 			</div>
 
 			<div class="col-md-6 col-lg-6">
-				<h4>Events</h4>
-				<p>
-					Events goes here...				</p>
+				<h4 class="highlight">Events</h4>
+                @foreach (Event mitoEvent in db.Events)
+                {
+                    Html.RenderPartial("~/Views/Home/Sections/AboutEventsPartial.cshtml", mitoEvent);
+                }
 			</div>
 		</div>
 
