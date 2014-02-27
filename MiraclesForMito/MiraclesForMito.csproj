@@ -153,6 +153,7 @@
     <Compile Include="Controllers\AdminUserController.cs" />
     <Compile Include="Controllers\BlogPostController.cs" />
     <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -495,6 +496,10 @@
     <Content Include="Views\Admin\AdminUsers.cshtml" />
     <Content Include="Views\Admin\AdminUserDisplay.cshtml" />
     <Content Include="Views\Admin\AdminUserEdit.cshtml" />
+    <Content Include="Views\Home\Sections\AboutEventsPartial.cshtml" />
+    <Content Include="Views\Events\Detail.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\Events\IndexEventPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

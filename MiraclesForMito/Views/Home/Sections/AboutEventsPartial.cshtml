@@ -1,0 +1,11 @@
+﻿@model MiraclesForMito.Models.Event
+
+<div class="row">
+	<div class="event-item col-md-12 col-lg-12">
+		<h5>@Model.Name</h5>
+        <span>
+            @string.Format("{0} - {1}, {2}, {3}", Model.StartDate.Value.ToString("MMM dd, yyyy"), Model.VenueName, Model.City, Model.State)
+        </span>
+        <a class="block-link" href="~/EventDetail/@Model.ID">VIEW @Model.Name.ToUpper() DETAILS</a>
+	</div>
+</div>

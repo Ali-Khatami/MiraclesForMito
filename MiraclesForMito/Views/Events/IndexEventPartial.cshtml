@@ -1,0 +1,23 @@
+﻿@model MiraclesForMito.Models.Event
+
+@{
+    var sStartDate = Model.StartDate.HasValue ? Model.StartDate.Value.ToString("MMM/dd/yyyy") : null;
+    var sStartTime = Model.StartDate.HasValue ? Model.StartDate.Value.ToString("hh tt") : null;
+    var sEndTime = Model.EndDate.HasValue ? Model.EndDate.Value.ToString("hh tt") : null;
+}
+
+<div class="event-item">
+    <h4>
+        @Model.Name
+    </h4>
+    <div>
+        Date: @sStartDate
+    </div>
+    <div>
+        Time: @sStartTime - @sEndTime
+    </div>
+    <div>
+        Location: @Model.VenueName
+    </div>
+    <div>@ViewData["index"]</div>
+</div>
