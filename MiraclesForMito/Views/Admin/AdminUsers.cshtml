@@ -55,7 +55,7 @@
 
 						// delete the item via AJAX
 						$.ajax({
-							url: "~/API/Admin/".ResolveUrl() + jButton.attr("data-userid"),
+							url: "~/API/AdminUser/".ResolveUrl() + jButton.attr("data-userid"),
 							type: "DELETE"
 						})
 						.done(
