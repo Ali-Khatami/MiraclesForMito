@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MiraclesForMito.Controllers.ActionFilters;
 using MiraclesForMito.Models;
+using MiraclesForMito.Utilities;
 
 namespace MiraclesForMito.Controllers
 {
@@ -15,16 +17,50 @@ namespace MiraclesForMito.Controllers
         /// The login form for the admin site. Will auto redirect if logged in.
         /// </summary>
         /// <returns></returns>
-        public ActionResult Index()
+        public ActionResult Index(string email, string password)
         {
-			// check if user is logged in as an admin already
-			if (false)
+			bool bAttemptedLogin = !string.IsNullOrEmpty(email) || !string.IsNullOrEmpty(password);
+
+			// create the user instace
+			AdminUser userFromCredentials = null;
+
+			// try to find the user from credentials
+			if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
 			{
+				userFromCredentials = db.Admins.FirstOrDefault(user => user.Email.ToLower() == email.ToLower() && user.Password == password);
+			}
+						
+			// check if user is logged in as an admin already
+			if (UserUtils.CurrentUser != null || userFromCredentials != null)
+			{
+				// create a session cookie for the user then redirect them
+				UserUtils.CreateEncryptedUserCookie((userFromCredentials != null) ? userFromCredentials.ID : UserUtils.CurrentUser.ID);
+
+				// redirect to the events page which is the first link in the navigation
 				Response.Redirect("~/Admin/Events");
 			}
+
+			// if we didn't redirect it means someone unsuccessfully tried to login
+			if (bAttemptedLogin)
+			{
+				ViewBag.FailedLogin = true;
+			}
+
             return View();
         }
 
+		/// <summary>
+		/// Log out the user out and redirect them to the public landing page.
+		/// </summary>
+		public void Logout()
+		{
+			// delete the user cookie. Redirect them to the site
+			UserUtils.DestroyEncryptedUserCookie();
+
+			Response.Redirect("~/");
+		}
+
+		[AdminsOnly]
 		/// <summary>
 		/// 
 		/// </summary>
@@ -34,6 +70,7 @@ namespace MiraclesForMito.Controllers
 			return View();
 		}
 
+		[AdminsOnly]
 		/// <summary>
 		/// 
 		/// </summary>
@@ -43,6 +80,7 @@ namespace MiraclesForMito.Controllers
 			return View(db.Events.Find(id));
 		}
 
+		[AdminsOnly]
 		/// <summary>
 		/// 
 		/// </summary>
@@ -52,6 +90,7 @@ namespace MiraclesForMito.Controllers
 			return View();
 		}
 
+		[AdminsOnly]
 		/// <summary>
 		/// 
 		/// </summary>
@@ -61,6 +100,7 @@ namespace MiraclesForMito.Controllers
 			return View(db.BlogPosts.Find(id));
 		}
 
+		[AdminsOnly]
 		/// <summary>
 		/// 
 		/// </summary>
@@ -76,6 +116,7 @@ namespace MiraclesForMito.Controllers
 			return View();
 		}
 
+		[AdminsOnly]
 		/// <summary>
 		/// 
 		/// </summary>

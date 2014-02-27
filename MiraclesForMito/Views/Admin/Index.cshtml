@@ -11,17 +11,24 @@
 				<h3 class="panel-title">Miracles for Mito Login</h3>
 			</div>
 			<div class="panel-body">
-				<form class="form-horizontal" role="form">
+				@if (((bool?)ViewBag.FailedLogin).GetValueOrDefault(false))
+				{
+					<div class="alert alert-danger alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<strong>Failed</strong> Invalid login attempt!
+					</div>
+				}
+				<form class="form-horizontal" role="form" method="post">
 
 					<div class="col-sm-12 col-sm-offset-0">
 						<div class="form-group">
 							<label for="Email">Email address</label>
-							<input type="email" class="form-control" id="Email" placeholder="Enter email" />
+							<input type="email" class="form-control" id="Email" name="Email" placeholder="Enter email" required />
 						</div>
 
 						<div class="form-group">
 							<label for="Password">Password</label>
-							<input type="password" class="form-control" id="Password" placeholder="Password" />
+							<input type="password" class="form-control" id="Password" name="Password" placeholder="Password" required />
 						</div>
 					</div>
 
