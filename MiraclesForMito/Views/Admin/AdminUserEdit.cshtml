@@ -75,7 +75,7 @@
 				// if they actually want to quite just take them back to the view all page
 				if(bConfirmCancel)
 				{
-					window.location = "~/Admin/AdminUser".ResolveUrl();
+					window.location = "~/Admin/AdminUsers".ResolveUrl();
 				}
 			});
 
@@ -110,7 +110,7 @@
 					function ()
 					{
 						alert(sSuccesMessage);
-						window.location = "~/Admin/AdminUser".ResolveUrl();
+						window.location = "~/Admin/AdminUsers".ResolveUrl();
 					}
 				)
 				.fail(function () { alert(sFailMessage) });
