@@ -106,6 +106,11 @@ namespace MiraclesForMito.Models
 		public string ContactEmail { get; set; }
 
 		/// <summary>
+		/// The external registration link for the event.
+		/// </summary>
+		public string RegistrationLink { get; set; }
+
+		/// <summary>
 		/// A Url to link people to.
 		/// </summary>
 		public string Link { get; set; }
