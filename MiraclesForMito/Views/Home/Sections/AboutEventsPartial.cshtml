@@ -2,10 +2,10 @@
 
 <div class="row">
 	<div class="event-item col-md-12 col-lg-12">
-		<h3>@Model.Name</h3>
+		<h5>@Model.Name</h5>
         <span>
-            @string.Format("{0} - {1}, {2}, {3}", Model.StartDate.Value.ToString("MMM dd, yyyy"), Model.Address, Model.City, Model.State)
+            @string.Format("{0} - {1}, {2}, {3}", Model.StartDate.Value.ToString("MMM dd, yyyy"), Model.VenueName, Model.City, Model.State)
         </span>
-        <a href="~/EventDetail/@Model.ID">VIEW DETAILS</a>
+        <a class="block-link" href="~/EventDetail/@Model.ID">VIEW @Model.Name.ToUpper() DETAILS</a>
 	</div>
 </div>

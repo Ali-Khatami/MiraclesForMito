@@ -34,5 +34,10 @@ namespace MiraclesForMito.Models
 		/// 
 		/// </summary>
 		public string Password { get; set; }
+
+		/// <summary>
+		/// Requires user to change their password
+		/// </summary>
+		public bool? ForceChangePassword { get; set; }
 	}
 }

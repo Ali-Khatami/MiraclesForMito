@@ -2,9 +2,14 @@
 
 @{
 	SiteDB db = new SiteDB();
+    List<Event> mitoEvents = new List<Event>();
+    int iNumberOfEventsToDisplay = 2;
+    
+    if (db.Events != null && db.Events.Count() > 0)
+    {
+        mitoEvents.AddRange(db.Events.Where(e => e.StartDate.HasValue && e.StartDate.Value >= DateTime.Now));   
+    }
 }
-
-
 
 <a id="about"></a>
 
@@ -34,7 +39,7 @@
 			<div class="col-md-6 col-lg-6">
 				<h4>Miracles for Mito: In the spirit of strength</h4>
 				<p>
-					Miracles for Mito’s mission is to ensure that no individual or family has to be alone while trying to understand a complicated mitochondrial diagnosis.			
+					Miracles for Mito’s mission is to ensure that no individual or family has to be alone while trying to understand a complicated mitochondrial diagnosis.
 				</p>
 				<p>
 					Our mission is to improve the resources and information available to individuals and families that are coping with Mitochondrial Disease in the Rocky Mountain Region.  We are focused on awareness, education, support and advocacy for children and adults.
@@ -44,13 +49,22 @@
 				</p>
 			</div>
 
-			<div class="col-md-6 col-lg-6">
-				<h4 class="highlight">Events</h4>
-                @foreach (Event mitoEvent in db.Events)
-                {
-                    Html.RenderPartial("~/Views/Home/Sections/AboutEventsPartial.cshtml", mitoEvent);
-                }
-			</div>
+            @if(mitoEvents != null && mitoEvents.Count > 0)
+            {
+			    <div class="col-md-6 col-lg-6 events-container">
+				    <h4>Events</h4>
+                    @foreach (Event mitoEvent in mitoEvents.Take(iNumberOfEventsToDisplay))
+                    {
+                        Html.RenderPartial("~/Views/Home/Sections/AboutEventsPartial.cshtml", mitoEvent);
+                    }
+                
+                    @if (mitoEvents.Count > iNumberOfEventsToDisplay)
+                    {// add the view all link
+                        <a class="block-link view-all" href="~/Events/Index">VIEW ALL EVENTS</a>
+                    }
+                </div>
+            }
+
 		</div>
 
 	</div>

@@ -12,6 +12,6 @@ namespace MiraclesForMito.Controllers
 		public ActionResult Index()
 		{
 			return View();
-		}
+		}       
 	}
 }
