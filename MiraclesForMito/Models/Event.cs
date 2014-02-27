@@ -71,6 +71,11 @@ namespace MiraclesForMito.Models
 		}
 
 		/// <summary>
+		/// The name of the event or location
+		/// </summary>
+		public string VenueName { get; set; }
+
+		/// <summary>
 		/// The address of the event
 		/// </summary>
 		public string Address { get; set; }

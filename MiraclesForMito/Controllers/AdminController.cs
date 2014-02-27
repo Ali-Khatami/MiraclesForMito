@@ -75,5 +75,14 @@ namespace MiraclesForMito.Controllers
 
 			return View();
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public ActionResult AdminUserEdit(int? id)
+		{
+			return View(db.Admins.Find(id));
+		}
     }
 }

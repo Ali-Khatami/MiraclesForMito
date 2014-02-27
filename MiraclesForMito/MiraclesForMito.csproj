@@ -494,6 +494,7 @@
     <Content Include="Views\Shared\_AdminLoginLayout.cshtml" />
     <Content Include="Views\Admin\AdminUsers.cshtml" />
     <Content Include="Views\Admin\AdminUserDisplay.cshtml" />
+    <Content Include="Views\Admin\AdminUserEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
