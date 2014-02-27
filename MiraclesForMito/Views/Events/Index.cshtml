@@ -1,0 +1,47 @@
+﻿@model System.Data.Entity.DbSet<MiraclesForMito.Models.Event>
+
+@{
+    ViewBag.Title = "Events";
+    
+    // group the archived and upcoming events
+    var archivedEvents = Model != null ? Model.Where(e => e.StartDate.HasValue && e.StartDate.Value < DateTime.Now) : null;
+    var upcomingEvents = Model != null ? Model.Where(e => !e.StartDate.HasValue || e.StartDate.Value > DateTime.Now): null;
+}
+
+<div class="row main-page-section">
+	<div class="col-md-12 col-lg-10 col-md-offset-0 col-lg-offset-1">
+        @{ int index = 0; }
+		@if (archivedEvents != null && archivedEvents.Count() > 0)
+        {
+            <div>
+                <h1>Archived Events</h1>
+                
+                @foreach (var mitoEvent in archivedEvents)
+		        {
+                    Html.RenderPartial("~/Views/Events/IndexEventPartial.cshtml", mitoEvent, new ViewDataDictionary { { "index", index } });
+                    index++;
+		        }
+            </div>  
+        }    
+
+        @if (upcomingEvents != null && upcomingEvents.Count() > 0)
+        {
+            index = 0;
+            <div>
+                <h1>Upcoming Events</h1>
+
+                @foreach (var mitoEvent in upcomingEvents)
+		        {
+                    Html.RenderPartial("~/Views/Events/IndexEventPartial.cshtml", mitoEvent, new ViewDataDictionary { { "index", index } });
+                    index++;
+		        }
+            </div>  
+        }
+
+		@if (Model.Count() == 0)
+		{
+			<h3>There are currently no events scheduled.</h3>
+		}
+
+	</div>
+</div>
