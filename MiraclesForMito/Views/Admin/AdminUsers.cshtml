@@ -1,0 +1,86 @@
+﻿@using MiraclesForMito.Models;
+
+@{
+    ViewBag.Title = "Admin Users";
+	ViewBag.Active = "users";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	SiteDB db = new SiteDB();
+}
+
+
+<div class="row">
+	<div class="col-md-12 col-lg-12 col-md-offset-0 col-lg-offset-0 clearfix">
+		<h1 class="clearfix">
+			Admin Users
+			<a class="btn btn-success btn-lg pull-right" href="~/Admin/AdminUserEdit/">
+				Create New Admin User
+			</a>
+		</h1>
+	</div>
+</div>
+
+<div class="row main-page-section">
+	<div class="col-md-12 col-lg-10 col-md-offset-0 col-lg-offset-1">
+
+		@foreach (AdminUser user in db.Admins)
+		{
+			Html.RenderPartial("~/Views/Admin/AdminUserDisplay.cshtml", user);
+		}
+
+	</div>
+</div>
+
+@section scripts{
+	<script type="text/javascript">
+		$(function(){
+
+			$("body").on(
+				"click.delete_admin",
+				"a.delete-admin-user",
+				function (e)
+				{
+					var jButton = $(this);
+
+					// launch an alert just to make sure the user actually wants to delete this item
+					var bDelete = confirm("Are you sure you want to remove " + jButton.attr("data-username") + " as an admin?");
+
+					// only continue if they actually want to delete it
+					if (bDelete)
+					{
+						// grab the container element
+						var jAdminUserContainer = jButton.closest("div.admin-user");
+
+						// add a class that we can use to fade out the item or show HTML
+						jAdminUserContainer.addClass("deleting");
+
+						// delete the item via AJAX
+						$.ajax({
+							url: "~/API/Admin/".ResolveUrl() + jButton.attr("data-userid"),
+							type: "DELETE"
+						})
+						.done(
+							function ()
+							{
+								// fade out the item then delete after its been faded
+								jAdminUserContainer.fadeOut(
+									400,
+									function ()
+									{
+										jAdminUserContainer.remove();
+									}
+								);
+							}
+						)
+						.fail(
+							function ()
+							{
+								alert("Failed to remove!");
+								jAdminUserContainer.removeClass("deleting");
+							}
+						);
+					}
+				}
+			);
+		});
+	</script>
+}

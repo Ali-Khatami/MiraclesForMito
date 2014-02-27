@@ -1,0 +1,9 @@
+﻿@model MiraclesForMito.Models.AdminUser
+
+<div class="row">
+	<div class="admin-user col-md-12 col-lg-12">
+		<h4>@Html.Raw(string.Format("{0} {1} ({2})", Model.FirstName, Model.LastName, Model.Email))</h4>
+		<a class="btn btn-primary btn-medium" href="~/Admin/UserEdit/@Model.ID">Edit</a>
+		<a class="btn btn-danger btn-medium delete-admin-user" data-username="@Html.Raw(string.Format("{0} {1}", Model.FirstName, Model.FirstName))" data-userid="@Model.ID">Remove</a>
+	</div>
+</div>

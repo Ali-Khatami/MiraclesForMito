@@ -18,7 +18,7 @@ namespace MiraclesForMito.Controllers
         public ActionResult Index()
         {
 			// check if user is logged in as an admin already
-			if (true)
+			if (false)
 			{
 				Response.Redirect("~/Admin/Events");
 			}
@@ -59,6 +59,21 @@ namespace MiraclesForMito.Controllers
 		public ActionResult BlogPostEdit(int? id)
 		{
 			return View(db.BlogPosts.Find(id));
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public ActionResult AdminUsers()
+		{
+			if (db.Admins.Count() == 0)
+			{
+				db.Admins.Add(new AdminUser() { Email = "ali.d.khatami@gmail.com", FirstName = "Ali", LastName = "Khatami", Password = "Miracles1" });
+				db.SaveChanges();
+			}
+
+			return View();
 		}
     }
 }
