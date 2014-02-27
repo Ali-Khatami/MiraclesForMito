@@ -1,0 +1,120 @@
+﻿@using MiraclesForMito.Models;
+@model AdminUser
+
+@{
+	ViewBag.Title = "Edit Admin User";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewBag.Active = "users";
+	AdminUser modelToUse = Model;
+	bool bIsCreate = false;
+	
+	// Model
+	if (modelToUse == null)
+	{
+		modelToUse = new AdminUser() { ID = -1 };
+		bIsCreate = true;
+		ViewBag.Title = "Create Admin User";
+	}
+
+	SiteDB db = new SiteDB();
+}
+
+<h1>@ViewBag.Title</h1>
+
+<div class="row main-page-section">
+	<div class="col-md-12 col-lg-10 col-md-offset-0 col-lg-offset-1">
+
+		<div class="row">
+			<div class="col-md-12 col-lg-12">
+				<form id="AdminUserEditForm" action="~/API/BlogPost/" method="put" class="form-horizontal" role="form">
+
+					<input type="hidden" id="id" name="id" value="@modelToUse.ID" />
+
+					<div class="form-group">
+						<label for="Name" class="col-sm-2 control-label">Name</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="FirstName" name="FirstName" placeholder="Enter First Name" value="@modelToUse.FirstName" />
+						</div>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="LastName" name="LastName" placeholder="Enter Last Name" value="@modelToUse.LastName" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="Name" class="col-sm-2 control-label">Email</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="Email" name="Email" placeholder="Enter Email" value="@modelToUse.Email" />
+						</div>
+					</div>
+			
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-success">@(bIsCreate ? "Create User" : "Update User")</button>
+							<button id="CancelChanges" type="button" class="btn btn-danger">Cancel</button>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+@section scripts{
+	<script type="text/javascript">
+		$(function ()
+		{
+			var $AdminUserEditForm = $("#AdminUserEditForm");
+
+			// need to make sure they didn't accidently click on cancel
+			$("#CancelChanges").on("click", function(){
+				// launch simple confirm
+				var bConfirmCancel = confirm("Are you sure you want to cancel? Any changes made will not be saved.");
+
+				// if they actually want to quite just take them back to the view all page
+				if(bConfirmCancel)
+				{
+					window.location = "~/Admin/AdminUser".ResolveUrl();
+				}
+			});
+
+			$AdminUserEditForm.submit(function (e)
+			{
+				e.preventDefault();
+
+				var sUrl = "~/API/AdminUser/".ResolveUrl();
+				var sAction = "PUT";
+				// written from serverside.
+				var bIsCreate = @bIsCreate.ToString().ToLower();
+				var sSuccesMessage = "Updated!";
+				var sFailMessage = "Failed to update!";
+
+				if (bIsCreate)
+				{
+					sAction = "POST";
+					sSuccesMessage = "Created!";
+					sFailMessage = "Failed to create!";
+				}
+				else
+				{
+					sUrl += $('#id').val();
+				}
+
+				$.ajax({
+					url: sUrl,
+					type: sAction,
+					data: $AdminUserEditForm.serialize()
+				})
+				.done(
+					function ()
+					{
+						alert(sSuccesMessage);
+						window.location = "~/Admin/AdminUser".ResolveUrl();
+					}
+				)
+				.fail(function () { alert(sFailMessage) });
+			});
+		});
+	</script>
+}
