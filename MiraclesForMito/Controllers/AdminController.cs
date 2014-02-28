@@ -50,10 +50,32 @@ namespace MiraclesForMito.Controllers
         }
 
 		/// <summary>
+		/// The login form for the admin site. Will auto redirect if logged in.
+		/// </summary>
+		/// <returns></returns>
+		public ActionResult ForgotPassword(ForgotPasswordModel model)
+		{
+			// The user shouldn't be here
+			if (UserUtils.CurrentUser != null)
+			{
+				// take them to the events page
+				Response.Redirect("~/Admin/Events");
+			}
+
+			// set the user before trying to change the password
+			model.SetDBInstance(db);
+			// this will only change the password if someone actually passes the necessary strings
+			model.SendNewPassword();
+
+			// pass the model
+			return View(model);
+		}
+
+		/// <summary>
         /// The login form for the admin site. Will auto redirect if logged in.
         /// </summary>
         /// <returns></returns>
-		public ActionResult ChangePassword()
+		public ActionResult ChangePassword(ChangePasswordModel model)
 		{
 			// The user shouldn't be here
 			if (UserUtils.CurrentUser == null)
@@ -62,7 +84,13 @@ namespace MiraclesForMito.Controllers
 				Response.Redirect("~/Admin");
 			}
 
-			return View();
+			// set the user before trying to change the password
+			model.SetUser(UserUtils.CurrentUser, db);
+			// this will only change the password if someone actually passes the necessary strings
+			model.ChangePassword();
+
+			// pass the model
+			return View(model);
 		}
 
 		/// <summary>
@@ -73,7 +101,7 @@ namespace MiraclesForMito.Controllers
 			// delete the user cookie. Redirect them to the site
 			UserUtils.DestroyEncryptedUserCookie();
 
-			Response.Redirect("~/");
+			Response.Redirect("~/Admin");
 		}
 
 		[AdminsOnly]

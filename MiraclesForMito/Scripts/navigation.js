@@ -1,8 +1,12 @@
 ﻿var Navigation = function () { }
 
-Navigation.prototype.init = function () {
-    this._cacheElements();
-    this._bindEvents();
+Navigation.prototype.init = function ()
+{
+	if (!$('#MainNav').hasClass("admin"))
+	{
+		this._cacheElements();
+		this._bindEvents();
+	}
 };
 
 Navigation.prototype._cacheElements = function () {

@@ -1,9 +1,23 @@
-﻿@model MiraclesForMito.Models.AdminUser
+﻿@using MiraclesForMito.Utilities;
+@model MiraclesForMito.Models.AdminUser
 
-<div class="row">
-	<div class="admin-user col-md-12 col-lg-12">
-		<h4>@Html.Raw(string.Format("{0} {1} ({2})", Model.FirstName, Model.LastName, Model.Email))</h4>
+
+<div class="admin-user col-md-4">
+	<div class="well">
+		<h4>
+			@Html.Raw(string.Format("{0} {1}", Model.FirstName, Model.LastName))<br/>
+			<small>@Model.Email</small>
+		</h4>
+
 		<a class="btn btn-primary btn-medium" href="~/Admin/AdminUserEdit/@Model.ID">Edit</a>
-		<a class="btn btn-danger btn-medium delete-admin-user" data-username="@Html.Raw(string.Format("{0} {1}", Model.FirstName, Model.LastName))" data-userid="@Model.ID">Remove</a>
+		@*We don't want people to remove themselves...that would get weird*@
+		@if(Model.ID != UserUtils.CurrentUser.ID)
+		{
+			<a class="btn btn-danger btn-medium delete-admin-user" data-username="@Html.Raw(string.Format("{0} {1}", Model.FirstName, Model.LastName))" data-userid="@Model.ID">Remove</a>
+		}
+		else
+		{
+			<a href="~/Admin/ChangePassword" class="btn btn-info btn-medium">Change Password</a>
+		}
 	</div>
 </div>
