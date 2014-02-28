@@ -2,7 +2,7 @@
 
 Navigation.prototype.init = function ()
 {
-	if (!$('#MainNav').hasClass("admin"))
+	if ($('#MainNav').length && !$('#MainNav').hasClass("admin"))
 	{
 		this._cacheElements();
 		this._bindEvents();
