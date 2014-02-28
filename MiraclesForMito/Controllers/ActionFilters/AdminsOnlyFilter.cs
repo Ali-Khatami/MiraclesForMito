@@ -23,7 +23,7 @@ namespace MiraclesForMito.Controllers.ActionFilters
 			// someone is logged in but they need to change their password -- force them to change their password
 			else if (UserUtils.CurrentUser.ForceChangePassword.GetValueOrDefault(false))
 			{
-				HttpContext.Current.Response.Redirect("~/Admin/ForceChangePassword", true);
+				HttpContext.Current.Response.Redirect("~/Admin/ChangePassword", true);
 			}
 			// ELSE - someone is logged in and they are good to go
 		}

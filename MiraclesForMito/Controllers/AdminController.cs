@@ -50,6 +50,22 @@ namespace MiraclesForMito.Controllers
         }
 
 		/// <summary>
+        /// The login form for the admin site. Will auto redirect if logged in.
+        /// </summary>
+        /// <returns></returns>
+		public ActionResult ChangePassword()
+		{
+			// The user shouldn't be here
+			if (UserUtils.CurrentUser == null)
+			{
+				// log them in
+				Response.Redirect("~/Admin");
+			}
+
+			return View();
+		}
+
+		/// <summary>
 		/// Log out the user out and redirect them to the public landing page.
 		/// </summary>
 		public void Logout()

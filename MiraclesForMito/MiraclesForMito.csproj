@@ -503,6 +503,7 @@
     <Content Include="Views\Events\Detail.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Events\IndexEventPartial.cshtml" />
+    <Content Include="Views\Admin\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
