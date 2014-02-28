@@ -1,30 +1,44 @@
 ﻿@using MiraclesForMito.Models;
 
 @{
-    ViewBag.Title = "Admin Users";
+	ViewBag.Title = "Admin Users";
 	ViewBag.Active = "users";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
 	SiteDB db = new SiteDB();
 }
 
 
 <div class="row">
 	<div class="col-md-12 col-lg-12 col-md-offset-0 col-lg-offset-0 clearfix">
-		<h1 class="clearfix">
-			Admin Users
-			<a class="btn btn-success btn-lg pull-right" href="~/Admin/AdminUserEdit/">
-				Create New Admin User
+		<h1 class="clearfix">Admin Users
+			<a class="btn btn-success btn-lg pull-right" href="~/Admin/AdminUserEdit/">Create New Admin User
 			</a>
 		</h1>
 	</div>
 </div>
 
 <div class="row main-page-section">
-	<div class="col-md-12 col-lg-10 col-md-offset-0 col-lg-offset-1">
+	<div class="col-md-12">
 
-		@foreach (AdminUser user in db.Admins)
-		{
-			Html.RenderPartial("~/Views/Admin/AdminUserDisplay.cshtml", user);
+		@{
+			int iCounter = 0;
+			foreach (AdminUser user in db.Admins)
+			{
+				if (iCounter == 0)
+				{
+					@Html.Raw("<div class=\"row\">")
+				}
+				else if (iCounter > 0 && iCounter % 3 == 0)
+				{
+					@Html.Raw("</div><div class=\"row\">")
+				}
+
+				@Html.Partial("~/Views/Admin/AdminUserDisplay.cshtml", user);
+
+				iCounter++;
+			}
+
+			@Html.Raw("</div>")
 		}
 
 	</div>
@@ -32,7 +46,8 @@
 
 @section scripts{
 	<script type="text/javascript">
-		$(function(){
+		$(function ()
+		{
 
 			$("body").on(
 				"click.delete_admin",

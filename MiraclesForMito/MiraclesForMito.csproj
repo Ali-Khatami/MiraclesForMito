@@ -160,7 +160,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BlogPost.cs" />
+    <Compile Include="Models\ChangePasswordModel.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\ForgotPasswordModel.cs" />
     <Compile Include="Models\SiteDB.cs" />
     <Compile Include="Models\AdminUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -503,6 +505,8 @@
     <Content Include="Views\Events\Detail.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Events\IndexEventPartial.cshtml" />
+    <Content Include="Views\Admin\ChangePassword.cshtml" />
+    <Content Include="Views\Admin\ForgotPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

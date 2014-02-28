@@ -68,7 +68,7 @@ namespace MiraclesForMito.Controllers
 						Body = @"Dear " + user.FirstName + " " + user.LastName + @",<br/><br/>
 							You have been added as a Miracles for Mito Admin user. Your credentials are as follows:<br/><br/>
 							<strong>Username:</strong> <em>[this email]</em><br/>
-							<string>Password:</strong> " + sPasswordToSave + @"<br/><br/>
+							<strong>Password:</strong> " + sPasswordToSave + @"<br/><br/>
 						
 						Sincerely,<br/>
 						The Miracles for Mito Dev Team

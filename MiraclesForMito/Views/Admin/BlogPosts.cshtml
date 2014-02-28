@@ -19,16 +19,32 @@
 </div>
 
 <div class="row main-page-section">
-	<div class="col-md-12 col-lg-10 col-md-offset-0 col-lg-offset-1">
-
-		@foreach (BlogPost post in db.BlogPosts)
-		{
-			Html.RenderPartial("~/Views/Admin/BlogPostDisplayAllPartial.cshtml", post);
-		}
+	<div class="col-md-12">
 
 		@if (db.BlogPosts.Count() == 0)
 		{
 			<h3>Once you have added blog posts, you'll see them here</h3>
+		}
+		else
+		{
+			int iCounter = 0;
+			foreach (BlogPost post in db.BlogPosts)
+			{
+				if (iCounter == 0)
+				{
+					@Html.Raw("<div class=\"row\">")
+				}
+				else if (iCounter > 0 && iCounter % 3 == 0)
+				{
+					@Html.Raw("</div><div class=\"row\">")
+				}
+
+				@Html.Partial("~/Views/Admin/BlogPostDisplayAllPartial.cshtml", post);
+
+				iCounter++;
+			}
+
+			@Html.Raw("</div>")
 		}
 
 	</div>

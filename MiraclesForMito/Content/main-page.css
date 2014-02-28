@@ -91,13 +91,20 @@ div.main-page-footer {
         margin: 0px 0px 20px 0px;
     }
 
-    div.main-page-footer a .fa {
+    div.main-page-footer a .fa,
+	div.main-page-footer a span.glyphicon-user {
         font-size: 2em;
         margin: 0px 10px;
         color: #fff;
     }
 
-        div.main-page-footer a .fa:hover {
+	div.main-page-footer a span.glyphicon-user
+	{
+		font-size: 1.8em;
+	}
+
+        div.main-page-footer a:hover .fa,
+		div.main-page-footer a:hover span.glyphicon-user {
             color: #ccc;
         }
 
