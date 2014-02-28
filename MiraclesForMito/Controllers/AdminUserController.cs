@@ -25,6 +25,13 @@ namespace MiraclesForMito.Controllers
 				return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
 			}
 
+			// email must be unique
+			if (db.Admins.Where(adminUser => adminUser.Email.ToLower() == user.Email.ToLower() && adminUser.ID != id).Count() > 0)
+			{
+				ModelState.AddModelError("EmailNotUnique", "The email address provided is not unique.");
+				return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+			}
+
 			if (id != user.ID)
 			{
 				return Request.CreateResponse(HttpStatusCode.BadRequest);
@@ -49,6 +56,13 @@ namespace MiraclesForMito.Controllers
 		{
 			if (ModelState.IsValid)
 			{
+				// email must be unique
+				if (db.Admins.Where(adminUser => adminUser.Email.ToLower() == user.Email.ToLower()).Count() > 0)
+				{
+					ModelState.AddModelError("EmailNotUnique", "A user with this email address already exists.");
+					return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+				}
+
 				string sPasswordToSave = System.Web.Security.Membership.GeneratePassword(8, 5);
 				// create a random password
 				user.Password = sPasswordToSave;
