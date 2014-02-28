@@ -88,13 +88,13 @@
 				// written from serverside.
 				var bIsCreate = @bIsCreate.ToString().ToLower();
 				var sSuccesMessage = "Updated!";
-				var sFailMessage = "Failed to update!";
+				var sFailMessage = "Failed to update! Please ensure the email is unique.";
 
 				if (bIsCreate)
 				{
 					sAction = "POST";
 					sSuccesMessage = "Created!";
-					sFailMessage = "Failed to create!";
+					sFailMessage = "Failed to create! Please ensure the email is unique.";
 				}
 				else
 				{
