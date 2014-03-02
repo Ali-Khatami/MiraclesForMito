@@ -29,7 +29,7 @@ namespace MiraclesForMito.Controllers
 		public ActionResult Post()
 		{
 			string sPostTitle = RouteData.Values["id"].ToString();
-			return Index(new BlogPaginationModel(db, BlogFilterType.SEOTitle, sPostTitle));
+			return View("Index", new BlogPaginationModel(db, BlogFilterType.SEOTitle, sPostTitle));
 		}
 
 		public ActionResult Author()
