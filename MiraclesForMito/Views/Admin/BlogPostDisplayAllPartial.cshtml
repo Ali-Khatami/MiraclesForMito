@@ -1,8 +1,21 @@
 ﻿@model MiraclesForMito.Models.BlogPost
 
-<div class="blog-post-item col-md-4">
+<div class="blog-post-item col-md-6">
 	<div class="well">
-		<h4>@Model.Title</h4>
+		<h4 class="post-title">
+			@if(Model.Published.GetValueOrDefault(false))
+			{
+			<span class="badge badge-primary">Published</span>
+			}
+			@Model.Title
+			<br />
+			<small>by @(!string.IsNullOrEmpty(Model.Author) ? Model.Author : "<em>No Author</em>")</small>
+		</h4>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				@Html.Raw(Model.Content)
+			</div>
+		</div>
 		<a class="btn btn-primary btn-medium" href="~/Admin/BlogPostEdit/@Model.ID">Edit</a>
 		<a class="btn btn-danger btn-medium delete-post" data-posttitle="@Model.Title" data-postid="@Model.ID">Delete</a>
 	</div>

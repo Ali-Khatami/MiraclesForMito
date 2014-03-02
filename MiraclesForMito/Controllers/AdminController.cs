@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using MiraclesForMito.Controllers.ActionFilters;
 using MiraclesForMito.Models;
 using MiraclesForMito.Utilities;
+using Newtonsoft.Json;
 
 namespace MiraclesForMito.Controllers
 {
@@ -118,6 +119,26 @@ namespace MiraclesForMito.Controllers
 		/// <summary>
 		/// 
 		/// </summary>
+		/// <param name="model"></param>
+		/// <returns></returns>
+		public ActionResult PaginateEvents(PaginationModel model)
+		{
+			// deserialize the data
+			var additionalData = JsonConvert.DeserializeObject<Dictionary<string, int>>(model.AdditionalData);
+
+			// cast the value to the event type we want
+			EventViewType viewType = (EventViewType)additionalData["EventType"];
+
+			return PartialView(
+				"~/Views/Admin/EventsPaginationBody.cshtml",
+				new EventPaginationModel(viewType, db, model.PageIndex, model.PageSize)
+			);
+		}
+
+		[AdminsOnly]
+		/// <summary>
+		/// 
+		/// </summary>
 		/// <returns></returns>
 		public ActionResult EventEdit(int? id)
 		{
@@ -131,7 +152,21 @@ namespace MiraclesForMito.Controllers
 		/// <returns></returns>
 		public ActionResult BlogPosts()
 		{
-			return View();
+			return View(
+				new PaginationModel()
+				{
+					PageIndex = 0,// start from the first page
+					AJAXUrl = "~/Admin/PaginateBlogPosts", // where the ajax call should go
+					PageSize = 4,
+					TotalCount = db.BlogPosts.Count()
+				}
+			);
+		}
+
+		[AdminsOnly]
+		public ActionResult PaginateBlogPosts(PaginationModel model)
+		{
+			return PartialView("~/Views/Admin/BlogPostsPaginationBody.cshtml", model);
 		}
 
 		[AdminsOnly]

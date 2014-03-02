@@ -1,0 +1,25 @@
+﻿@helper PaginationModule(
+	string partialView,
+	MiraclesForMito.Models.PaginationModel paginationSettings)
+{	
+	<div
+		class="pagination-container"
+		data-pageSize="@paginationSettings.PageSize"
+		data-pageIndex="@paginationSettings.PageIndex"
+		data-totalCount="@paginationSettings.TotalCount"
+		data-ajaxUrl="@paginationSettings.AJAXUrl">
+	<div class="pagination-body">
+		@Html.RenderPartial()
+	</div>
+	<div class="pagination-footer clear-fix">
+		<a class="pagination-link pagination-link-next pull-right" href="javascript:void(0);">
+			Next
+			<span class="glyphicon glyphicon-chevron-right"></span>
+		</a>
+		<a class="pagination-link pagination-link-previous pull-right" href="javascript:void(0);">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+			Previous
+		</a>
+	</div>
+</div>
+}

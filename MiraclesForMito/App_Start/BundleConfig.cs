@@ -13,6 +13,7 @@ namespace MiraclesForMito
 					"~/Scripts/jquery-{version}.js",
 					"~/Scripts/jquery-ui-{version}.js",
 					"~/Scripts/bootstrap.js",
+					"~/Scripts/pagination.js",
                     "~/Scripts/navigation.js",
 					"~/Scripts/OADate.js"
 				)
@@ -38,6 +39,12 @@ namespace MiraclesForMito
 					"~/Content/common.css",
 					"~/Content/layout.css",
 					"~/Content/main-page.css"
+				)
+			);
+
+			bundles.Add(
+				new StyleBundle("~/Content/css/Admin").Include(
+					"~/Content/admin.css"
 				)
 			);
 
