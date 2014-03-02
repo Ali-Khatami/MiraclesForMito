@@ -161,8 +161,10 @@
     </Compile>
     <Compile Include="Models\BlogPost.cs" />
     <Compile Include="Models\ChangePasswordModel.cs" />
+    <Compile Include="Models\EventPaginationModel.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\ForgotPasswordModel.cs" />
+    <Compile Include="Models\PaginationModel.cs" />
     <Compile Include="Models\SiteDB.cs" />
     <Compile Include="Models\AdminUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -171,6 +173,7 @@
     <Compile Include="Utilities\Util.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\admin.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -278,6 +281,7 @@
     <Content Include="Content\font-awesome-4.0.3\scss\_spinning.scss" />
     <Content Include="Content\font-awesome-4.0.3\scss\_stacked.scss" />
     <Content Include="Content\font-awesome-4.0.3\scss\_variables.scss" />
+    <Content Include="Views\Helpers.cshtml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Images\calvin-smile.png" />
     <Content Include="Images\foot-bw.png" />
@@ -298,6 +302,7 @@
     <Content Include="Scripts\modernizr-2.7.1.js" />
     <Content Include="Scripts\navigation.js" />
     <Content Include="Scripts\OADate.js" />
+    <Content Include="Scripts\pagination.js" />
     <Content Include="Scripts\tinymce\jquery.tinymce.min.js" />
     <Content Include="Scripts\tinymce\license.txt" />
     <Content Include="Scripts\tinymce\plugins\advlist\plugin.js" />
@@ -507,6 +512,9 @@
     <Content Include="Views\Events\IndexEventPartial.cshtml" />
     <Content Include="Views\Admin\ChangePassword.cshtml" />
     <Content Include="Views\Admin\ForgotPassword.cshtml" />
+    <Content Include="Views\Admin\BlogPostsPaginationBody.cshtml" />
+    <Content Include="Views\Admin\EventsPaginationBody.cshtml" />
+    <Content Include="Views\Admin\EventsPaginationPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

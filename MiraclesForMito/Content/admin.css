@@ -1,0 +1,15 @@
+﻿div.admin-all-blog-posts div.blog-post-item h4.post-title
+{
+	margin-top: 0px
+}
+
+div.admin-all-blog-posts div.blog-post-item div.panel
+{
+	box-shadow: inset 0 -20px 10px -20px #ccc;
+}
+
+div.admin-all-blog-posts div.blog-post-item div.panel div.panel-body
+{
+	height: 175px;
+	overflow-y: auto;
+}

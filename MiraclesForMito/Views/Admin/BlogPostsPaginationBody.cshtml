@@ -1,0 +1,33 @@
+﻿@using MiraclesForMito.Models;
+@using System.Linq;
+
+@model PaginationModel
+
+@{
+	SiteDB db = new SiteDB();
+	int iCounter = 0;
+	
+	// sort the posts
+	var sortedAndFiltered = db.BlogPosts
+							.OrderByDescending( post => post.InsertDate)
+							.Skip(Model.PageIndex.GetValueOrDefault(0) * Model.PageSize.GetValueOrDefault(6))
+							.Take(Model.PageSize.GetValueOrDefault(6));
+
+	foreach (BlogPost post in sortedAndFiltered)
+	{
+		if (iCounter == 0)
+		{
+			@Html.Raw("<div class=\"row\">")
+		}
+		else if (iCounter > 0 && iCounter % 2 == 0)
+		{
+			@Html.Raw("</div><div class=\"row\">")
+		}
+
+		@Html.Partial("~/Views/Admin/BlogPostDisplayAllPartial.cshtml", post);
+
+		iCounter++;
+	}
+						
+	@Html.Raw("</div>")
+}

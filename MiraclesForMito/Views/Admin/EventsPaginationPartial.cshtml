@@ -1,0 +1,17 @@
+﻿@model MiraclesForMito.Models.EventPaginationModel
+
+<div id="EventsPaginationContainer_@(Model.EventType.ToString())" class="pagination-container" data-pageSize="@Model.PageSize" data-pageIndex="@Model.PageIndex" data-totalCount="@Model.TotalCount" data-ajaxUrl="@Model.AJAXUrl" data-additionalData="@Model.AdditionalData">
+	<div class="pagination-body">
+		@Html.Partial("~/Views/Admin/EventsPaginationBody.cshtml", Model)
+	</div>
+	<div class="pagination-footer clear-fix">
+		<a class="btn btn-default pagination-link pagination-link-next pull-right" href="javascript:void(0);">
+			Next
+			<span class="glyphicon glyphicon-chevron-right"></span>
+		</a>
+		<a class="btn btn-default pagination-link pagination-link-previous pull-right" href="javascript:void(0);">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+			Previous
+		</a>
+	</div>
+</div>

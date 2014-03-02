@@ -1,8 +1,8 @@
 ﻿@using MiraclesForMito.Models;
 
 @{
-    ViewBag.Title = "Events";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewBag.Title = "Events";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
 	ViewBag.Active = "event";
 	SiteDB db = new SiteDB();
 }
@@ -10,8 +10,7 @@
 
 <div class="row">
 	<div class="col-md-12 col-lg-12 col-md-offset-0 col-lg-offset-0 clearfix">
-		<h1 class="clearfix">
-			Events
+		<h1 class="clearfix">Events
 			<a class="btn btn-success btn-lg pull-right" href="~/Admin/EventEdit/">
 				Create New Event
 			</a>
@@ -21,39 +20,79 @@
 
 <div class="row main-page-section">
 	<div class="col-md-12">
+		<div class="panel-group" id="accordion">
 
-		@if (db.Events.Count() == 0)
-		{
-			<h3>Once you have added events, you'll see them here</h3>
-		}
-		else
-		{
-			int iCounter = 0;
-			foreach (Event mitoEvent in db.Events.OrderByDescending(currEvent => currEvent.StartDate))
-			{
-				if (iCounter == 0)
-				{
-					@Html.Raw("<div class=\"row\">")
-				}
-				else if (iCounter > 0 && iCounter % 3 == 0)
-				{
-					@Html.Raw("</div><div class=\"row\">")
-				}
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#PastEvents">
+							Past Events
+						</a>
+					</h4>
+				</div>
+				<div id="PastEvents" class="panel-collapse collapse">
+					<div class="panel-body">
+						@Html.Partial(
+							"~/Views/Admin/EventsPaginationPartial.cshtml",
+							new EventPaginationModel(EventViewType.Archive, db)
+							{
+								AJAXUrl = "~/Admin/PaginateEvents"
+							}
+						)
+					</div>
+				</div>
+			</div>
 
-				@Html.Partial("~/Views/Admin/EventDisplayAllPartial.cshtml", mitoEvent);
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#UpcomingEvents">
+							Upcoming Events
+						</a>
+					</h4>
+				</div>
+				<div id="UpcomingEvents" class="panel-collapse collapse in">
+					<div class="panel-body">
+						@Html.Partial(
+							"~/Views/Admin/EventsPaginationPartial.cshtml",
+							new EventPaginationModel(EventViewType.Upcoming, db)
+							{
+								AJAXUrl = "~/Admin/PaginateEvents"
+							}
+						)
+					</div>
+				</div>
+			</div>
 
-				iCounter++;
-			}
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#TBAEvents">
+							TBA Events
+						</a>
+					</h4>
+				</div>
+				<div id="TBAEvents" class="panel-collapse collapse">
+					<div class="panel-body">
+						@Html.Partial(
+							"~/Views/Admin/EventsPaginationPartial.cshtml",
+							new EventPaginationModel(EventViewType.TBA, db)
+							{
+								AJAXUrl = "~/Admin/PaginateEvents"
+							}
+						)
+					</div>
+				</div>
+			</div>
 
-			@Html.Raw("</div>")
-		}
-
+		</div>
 	</div>
 </div>
 
 @section scripts{
 	<script type="text/javascript">
-		$(function(){
+		$(function ()
+		{
 
 			$("body").on(
 				"click.delete_event",
@@ -87,7 +126,17 @@
 									400,
 									function ()
 									{
+										// store this before the button is removed
+										var $PaginationContainer = jButton.closest("div.pagination-container");
+
+										// remove the event
 										jEventContainer.remove();
+
+										// set the total count
+										$PaginationContainer.attr("data-totalCount", (Number($PaginationContainer.attr("data-totalCount")) - 1));
+
+										// reset the pagination
+										$PaginationContainer.paginate("Reset");
 									}
 								);
 							}
