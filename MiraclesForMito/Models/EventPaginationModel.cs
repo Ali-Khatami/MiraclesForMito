@@ -16,6 +16,8 @@ namespace MiraclesForMito.Models
 
 	public class EventPaginationModel : PaginationModel
 	{
+		private const int DEFAULT_PAGE_SIZE = 6;
+
 		/// <summary>
 		/// States whether this is an archive or upcoming view.
 		/// </summary>
@@ -62,14 +64,14 @@ namespace MiraclesForMito.Models
 		public EventPaginationModel(EventViewType eventType, SiteDB dbInstance, int? pageIndex, int? pageSize)
 		{
 			base.PageIndex = pageIndex.GetValueOrDefault(0);
-			base.PageSize = pageSize.GetValueOrDefault(6);
+			base.PageSize = pageSize.GetValueOrDefault(DEFAULT_PAGE_SIZE);
 			base.AdditionalData = JsonConvert.SerializeObject(new { EventType = (int)eventType });
 			this.EventType = eventType;
 			this._DBInstance = dbInstance;
 			this.SortedAndFilteredEvents = this._SortAndFilterEvents();
 		}
 
-		public IQueryable<Event> _SortAndFilterEvents()
+		private IQueryable<Event> _SortAndFilterEvents()
 		{
 			IQueryable<Event> events = null;
 
@@ -83,8 +85,8 @@ namespace MiraclesForMito.Models
 					base.TotalCount = events.Count();
 
 					events = events.OrderByDescending(mitoEvent => mitoEvent.StartDate)
-									.Skip(base.PageIndex.GetValueOrDefault(0) * base.PageSize.GetValueOrDefault(6))
-									.Take(base.PageSize.GetValueOrDefault(6));
+									.Skip(base.PageIndex.GetValueOrDefault(0) * base.PageSize.GetValueOrDefault(DEFAULT_PAGE_SIZE))
+									.Take(base.PageSize.GetValueOrDefault(DEFAULT_PAGE_SIZE));
 					break;
 				case EventViewType.Upcoming:
 					// find the upcoming events
@@ -94,8 +96,8 @@ namespace MiraclesForMito.Models
 					base.TotalCount = events.Count();
 
 					events = events.OrderByDescending(mitoEvent => mitoEvent.StartDate)
-									.Skip(base.PageIndex.GetValueOrDefault(0) * base.PageSize.GetValueOrDefault(6))
-									.Take(base.PageSize.GetValueOrDefault(6));
+									.Skip(base.PageIndex.GetValueOrDefault(0) * base.PageSize.GetValueOrDefault(DEFAULT_PAGE_SIZE))
+									.Take(base.PageSize.GetValueOrDefault(DEFAULT_PAGE_SIZE));
 					break;
 				case EventViewType.TBA:
 					// find the upcoming events
@@ -105,8 +107,8 @@ namespace MiraclesForMito.Models
 					base.TotalCount = events.Count();
 
 					events = events.OrderByDescending(mitoEvent => mitoEvent.Name)
-									.Skip(base.PageIndex.GetValueOrDefault(0) * base.PageSize.GetValueOrDefault(6))
-									.Take(base.PageSize.GetValueOrDefault(6));
+									.Skip(base.PageIndex.GetValueOrDefault(0) * base.PageSize.GetValueOrDefault(DEFAULT_PAGE_SIZE))
+									.Take(base.PageSize.GetValueOrDefault(DEFAULT_PAGE_SIZE));
 					break;
 			}
 

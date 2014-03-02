@@ -1,0 +1,32 @@
+﻿@model MiraclesForMito.Models.BlogPost
+
+<div class="blog-post col-md-12">
+	
+	<h5 class="post-date">
+		@Model.UpdatedDate.ToString()
+	</h5>
+
+	<h4 class="post-title">
+
+		<a href="~/Blog/Post/@(Model.SEOLink)">@Model.Title</a>
+
+		<br />
+		<small>
+			by
+			@if(!string.IsNullOrEmpty(Model.Author))
+			{
+				<a href="~/Blog/Author/@(Model.Author)">@(Model.Author)</a>
+			}
+			else
+			{
+				<em>No Author</em>
+			}
+		</small>
+
+	</h4>
+
+	<div class="post-content">
+		@Html.Raw(Model.Content)
+	</div>
+
+</div>

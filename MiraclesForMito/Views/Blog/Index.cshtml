@@ -1,0 +1,54 @@
+﻿@using MiraclesForMito.Models;
+
+@model BlogPaginationModel
+
+@{
+    ViewBag.Title = "Miracles for Mito Blog";
+	ViewBag.
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row main-page-section">
+
+	<div class="col-md-12 col-lg-10 col-md-offset-0 col-lg-offset-1">
+
+		<div class="row">
+
+			<div class="col-sm-12 col-md-9">
+
+				<div id="BlogPostsPaginationContainer"
+					class="pagination-container"
+					data-pageSize="@Model.PageSize"
+					data-pageIndex="@Model.PageIndex"
+					data-totalCount="@Model.TotalCount"
+					data-ajaxUrl="@Model.AJAXUrl"
+					data-additionalData="@Model.AdditionalData">
+
+					<div class="pagination-body">
+						@Html.Partial("~/Views/Blog/BlogPostsPaginationBody.cshtml", Model)
+					</div>
+
+					<div class="pagination-footer clear-fix">
+						<a class="btn btn-default pagination-link pagination-link-next pull-right" href="javascript:void(0);">
+							Next
+							<span class="glyphicon glyphicon-chevron-right"></span>
+						</a>
+						<a class="btn btn-default pagination-link pagination-link-previous pull-right" href="javascript:void(0);">
+							<span class="glyphicon glyphicon-chevron-left"></span>
+							Previous
+						</a>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="col-md-3 hidden-sm">
+				<h5>Sidebar modules go here</h5>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>

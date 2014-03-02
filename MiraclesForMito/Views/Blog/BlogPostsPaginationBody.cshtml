@@ -1,0 +1,11 @@
+﻿@using MiraclesForMito.Models;
+@using System.Linq;
+
+@model BlogPaginationModel
+
+@{
+	foreach (BlogPost post in Model.SortedAndFilteredPosts)
+	{
+		@Html.Partial("~/Views/Blog/BlogSinglePostPartial.cshtml", post);
+	}
+}
