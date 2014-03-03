@@ -24,9 +24,14 @@ namespace MiraclesForMito.Models
 		public string Description { get; set; }
 
 		/// <summary>
-		/// The start date of the event
+		/// Allows users to link to the event specfically.
 		/// </summary>
 		[Required]
+		public string SEOLink { get; set; }
+
+		/// <summary>
+		/// The start date of the event
+		/// </summary>
 		public DateTime? StartDate { get; set; }
 
 		/// <summary>

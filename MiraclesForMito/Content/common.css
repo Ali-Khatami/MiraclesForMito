@@ -1,1 +1,13 @@
-﻿
+﻿.btn.btn-miracles
+{
+	background: #3ABBA9;
+	border-radius: 0;
+	color: #fff;
+}
+
+
+	.btn.btn-miracles:hover
+	{
+		background: #57d1be;
+		color: #fff;
+	}

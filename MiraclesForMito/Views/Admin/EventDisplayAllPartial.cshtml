@@ -3,7 +3,7 @@
 <div class="event-item col-md-4">
 	<div class="well">
 		<h4>@Model.Name</h4>
-		<p>@Html.Raw(Model.StartDate.HasValue ? Model.StartDate.Value.ToString() : "TBD")</p>
+		<p>@Html.Raw(Model.StartDate.HasValue ? Model.StartDate.Value.ToString() : "TBA")</p>
 		<a class="btn btn-primary btn-medium" href="~/Admin/EventEdit/@Model.ID">Edit</a>
 		<a class="btn btn-danger btn-medium delete-event" data-eventname="@Model.Name" data-eventid="@Model.ID">Delete</a>
 	</div>

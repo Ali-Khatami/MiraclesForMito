@@ -20,6 +20,12 @@ namespace MiraclesForMito.Controllers
         /// <returns></returns>
         public ActionResult Index(string email, string password)
         {
+			if (db.Admins.Count() == 0)
+			{
+				db.Admins.Add(new AdminUser() { Email = "ali.d.khatami@gmail.com", FirstName = "Ali", LastName = "Khatami", Password = "Test123" });
+				db.SaveChanges();
+			}
+
 			bool bAttemptedLogin = !string.IsNullOrEmpty(email) || !string.IsNullOrEmpty(password);
 
 			// create the user instace
@@ -186,12 +192,6 @@ namespace MiraclesForMito.Controllers
 		/// <returns></returns>
 		public ActionResult AdminUsers()
 		{
-			if (db.Admins.Count() == 0)
-			{
-				db.Admins.Add(new AdminUser() { Email = "ali.d.khatami@gmail.com", FirstName = "Ali", LastName = "Khatami", Password = "Miracles1" });
-				db.SaveChanges();
-			}
-
 			return View();
 		}
 

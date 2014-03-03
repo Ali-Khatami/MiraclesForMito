@@ -10,7 +10,8 @@ namespace MiraclesForMito.Models
 	{
 		None,
 		Author,
-		SEOTitle
+		SEOTitle,
+		Search
 	}
 
 	public class BlogPaginationModel : PaginationModel
@@ -52,6 +53,9 @@ namespace MiraclesForMito.Models
 						break;
 					case BlogFilterType.SEOTitle:
 						sMessage = "Unable to find blog post.";
+						break;
+					case BlogFilterType.Search:
+						sMessage = "Unable to find blog posts matching your search criteria.";
 						break;
 				}
 
@@ -111,6 +115,19 @@ namespace MiraclesForMito.Models
 				case BlogFilterType.SEOTitle:
 					// find the upcoming events
 					posts = _DBInstance.BlogPosts.Where(post => !string.IsNullOrEmpty(post.SEOLink) && post.SEOLink.ToLower() == this.FilterValue.ToLower());
+
+					// set the total count
+					base.TotalCount = posts.Count();
+
+					posts = posts.OrderByDescending(post => post.UpdatedDate)
+									.Skip(base.PageIndex.GetValueOrDefault(0) * base.PageSize.GetValueOrDefault(DEFAULT_PAGE_SIZE))
+									.Take(base.PageSize.GetValueOrDefault(DEFAULT_PAGE_SIZE));
+					break;
+				case BlogFilterType.Search:
+					// find the upcoming events
+					posts = _DBInstance.BlogPosts.Where(
+						post => (!string.IsNullOrEmpty(post.Title) && post.Title.ToLower().Contains(this.FilterValue.ToLower())) || (!string.IsNullOrEmpty(post.ContentRaw) && post.ContentRaw.ToLower().Contains(this.FilterValue.ToLower()))
+					);
 
 					// set the total count
 					base.TotalCount = posts.Count();
