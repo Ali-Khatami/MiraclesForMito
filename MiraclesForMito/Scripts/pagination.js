@@ -44,7 +44,7 @@ Example
 		this._StoreSettings();
 
 		// go back 1 page
-		if (this._Settings.pageIndex > 0 && this._Settings.pageIndex * this._Settings.pageSize <= this._Settings.totalCount)
+		if (this._Settings.pageIndex > 0 && this._Settings.pageIndex * this._Settings.pageSize >= this._Settings.totalCount)
 		{
 			this._Settings.pageIndex = this._Settings.pageIndex - 1;
 		}
@@ -106,6 +106,16 @@ Example
 			"a.pagination-link",
 			$.proxy(this._HandlePaginationLinkClick, this)
 		);
+
+		// when pagination returns always scroll the page to the top of the container
+		this.$PaginationContainer.on("paginateAlways.defaultScrollTo", $.proxy(this._ScrollToTop, this));
+	};
+
+	paginationClass.fn._ScrollToTop = function (e)
+	{
+		var iTop = this.$PaginationContainer.offset().top - $("#MainNav").outerHeight(true);
+
+		$("body").animate({ scrollTop: iTop }, 400);
 	};
 
 	paginationClass.fn._HandlePaginationLinkClick = function (e)
@@ -123,6 +133,8 @@ Example
 
 	paginationClass.fn._RequestNewPage = function ()
 	{
+		this.$PaginationContainer.trigger("beforePaginate");
+
 		// kick off the ajax call to get the new data
 		$.ajax({
 			type: "GET",
@@ -134,12 +146,20 @@ Example
 			},
 			dataType: "html"
 		})
+		.always($.proxy(this._PaginationAlways, this))
 		.done($.proxy(this._PaginationSuccess, this))
 		.fail($.proxy(this._PaginationFail, this));
 	};
 
+	paginationClass.fn._PaginationAlways = function ()
+	{
+		this.$PaginationContainer.trigger("paginateAlways");
+	};
+
 	paginationClass.fn._PaginationSuccess = function (html)
 	{
+		this.$PaginationContainer.trigger("paginateSuccess");
+
 		// TODO hide loading graphic
 
 		// replace the body content with the results
@@ -154,6 +174,7 @@ Example
 
 	paginationClass.fn._PaginationFail = function (jqxhr)
 	{
+		this.$PaginationContainer.trigger("paginateFail");
 		// TODO hide loading graphic
 	};
 

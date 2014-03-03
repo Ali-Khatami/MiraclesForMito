@@ -36,6 +36,16 @@
 					</div>
 
 					<div class="form-group">
+						<label for="SEOLink" class="col-sm-2 control-label">SEO Link</label>
+						<div class="col-sm-8">
+							<div class="input-group">
+								<span class="input-group-addon">http://@(Request.Url.Host)/Event/</span>
+								<input type="text" class="form-control disabled" id="SEOLink" name="SEOLink" placeholder="" value="@modelToUse.SEOLink" readonly />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
 						<label for="Description" class="col-sm-2 control-label">Description</label>
 						<div class="col-sm-8">
 							<textarea class="form-control" id="Description" name="description" placeholder="Description">@modelToUse.Description</textarea>
@@ -197,6 +207,51 @@
 			var jEventEditForm = $("#EventEditForm");
 			var $startCalendar = $("#StartDateCalendar");
 			var $endCalendar = $("#EndDateCalendar");
+			var $seoLinkInput = $("#SEOLink");
+			var iSEOUrlCharacterCutOff = 60;
+
+			$("#Name").on(
+				"keyup",
+				function()
+				{
+					setSEOLinkValFromTitle($(this).val(), true);
+				}
+			);
+
+			var setSEOLinkValFromTitle = function(sVal, bCleanUpTrailingHyphens)
+			{
+				// if it has a value we will clean up the title and turn it into a more SEO friendly link
+				if(sVal)
+				{
+					// we only want letters, numbers, hyphens and spaces
+					var sanitizeRE = /[^A-Za-z0-9 \-]/gi;
+
+					// sanitize the value
+					var sSanitized = sVal.replace(sanitizeRE, "");
+
+					// we want the urls to have dashes instead of spaces to make them more SEO Friendly
+					var sSEOFriendly = sSanitized.replace(/ /g, "-");
+
+					// we don't want the url to be longer than 60 characters
+					sSEOFriendly = sSEOFriendly.substring(0, iSEOUrlCharacterCutOff);
+
+					// if the last character is 
+					if(!bCleanUpTrailingHyphens && sSEOFriendly.lastIndexOf("-") == (sSEOFriendly.length - 1))
+					{
+						sSEOFriendly = sSEOFriendly.substring(0, (sSEOFriendly.length - 1));
+					}
+
+					// replace multiple hyphen instances
+					sSEOFriendly = sSEOFriendly.replace(/-{2,}/g,"-");
+
+					// set the SEO Link value to the sanitized string replacing any spaces with dashes
+					$seoLinkInput.val(sSEOFriendly);
+				}
+				else if(!sVal)
+				{
+					$seoLinkInput.val("");
+				}
+			};
 
 			$startCalendar.datepicker({changeYear: true, changeMonth: true});
 			$endCalendar.datepicker({changeYear: true, changeMonth: true});

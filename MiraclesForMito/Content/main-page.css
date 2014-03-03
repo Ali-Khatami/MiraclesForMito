@@ -80,6 +80,77 @@ div.main-page-section div.useful-resource {
         height: 40px;
     }
 
+/* Blog */
+
+div.public-blog-container
+{
+	margin-top: 25px;
+}
+
+	div.public-blog-container div.blog-post
+	{
+		border-bottom: 1px solid #eee;
+		padding-bottom: 20px;
+		margin-bottom: 20px;
+	}
+
+	div.public-blog-container div.row-last div.blog-post
+	{
+		border-bottom: 0 none;
+	}
+
+		div.public-blog-container div.blog-post h5.post-date
+		{
+			margin-bottom: 0px;
+			color: #777;
+		}
+
+		div.public-blog-container div.blog-post h3.post-title
+		{
+			margin-top: 5px;
+		}
+
+			div.public-blog-container div.blog-post h3.post-title > a
+			{
+				color: #666;
+			}
+
+#BlogNewsletterFormContainer h5
+{
+	font-weight: bold;
+	margin-bottom: 0px;
+}
+
+#BlogSearchContainer
+{
+	margin-bottom: 40px;
+}
+
+#BlogShareButtonContainer a.image-link
+{
+	display: inline-block;
+	margin: 0 auto;
+	cursor: pointer;
+}
+
+#BlogShareButtonContainer
+{
+	border-top: 1px solid #eee;
+	margin-top: 20px;
+	padding-top: 10px;
+}
+
+#BlogShareButtonContainer h4
+{
+	color: #3ABBA9;
+}
+
+	#BlogShareButtonContainer a.btn
+	{
+		margin: 0 auto;
+		padding: 10px 10px;
+	}
+
 /*Footer*/
 div.main-page-footer {
     background-color: #222;

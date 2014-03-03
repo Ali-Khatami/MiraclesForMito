@@ -29,7 +29,7 @@ namespace MiraclesForMito.Controllers
 		public ActionResult Post()
 		{
 			string sPostTitle = RouteData.Values["id"].ToString();
-			return View("Index", new BlogPaginationModel(db, BlogFilterType.SEOTitle, sPostTitle));
+			return View(new BlogPaginationModel(db, BlogFilterType.SEOTitle, sPostTitle));
 		}
 
 		public ActionResult Author()
@@ -41,6 +41,29 @@ namespace MiraclesForMito.Controllers
 		}
 
 		public ActionResult AuthorPaginate(PaginationModel model)
+		{
+			// deserialize the data
+			var additionalData = JsonConvert.DeserializeObject<Dictionary<string, string>>(model.AdditionalData);
+
+			// cast the value to the event type we want
+			BlogFilterType filterType = (BlogFilterType)int.Parse(additionalData["FilterType"]);
+			string filterValue = additionalData["FilterValue"];
+
+			return PartialView(
+				"~/Views/Blog/BlogPostsPaginationBody.cshtml",
+				new BlogPaginationModel(db, filterType, filterValue, model.PageIndex, model.PageSize)
+			);
+		}
+
+		public ActionResult Search()
+		{
+			string sSearchValue = RouteData.Values["id"].ToString();
+			var model = new BlogPaginationModel(db, BlogFilterType.Search, sSearchValue);
+			model.AJAXUrl = "~/Blog/SearchPaginate";
+			return View("Index", model);
+		}
+
+		public ActionResult SearchPaginate(PaginationModel model)
 		{
 			// deserialize the data
 			var additionalData = JsonConvert.DeserializeObject<Dictionary<string, string>>(model.AdditionalData);

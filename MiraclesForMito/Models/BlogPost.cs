@@ -35,6 +35,12 @@ namespace MiraclesForMito.Models
 		public string Content { get; set; }
 
 		/// <summary>
+		/// The raw content of the post without the html
+		/// </summary>
+		[Required]
+		public string ContentRaw { get; set; }
+
+		/// <summary>
 		/// The date the post was created.
 		/// </summary>
 		public DateTime? InsertDate { get; set; }

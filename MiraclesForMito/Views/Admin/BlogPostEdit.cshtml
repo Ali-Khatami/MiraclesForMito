@@ -48,8 +48,8 @@
 						<label for="SEOLink" class="col-sm-2 control-label">SEO Link</label>
 						<div class="col-sm-10">
 							<div class="input-group">
-								<span class="input-group-addon">http://@Request.Url.Host/Blog/Post</span>
-								<input type="text" class="form-control disabled" id="SEOLink" name="SEOLink" placeholder="SEOLink" value="@modelToUse.SEOLink" readonly />
+								<span class="input-group-addon">http://@(Request.Url.Host)/Blog/Post/</span>
+								<input type="text" class="form-control disabled" id="SEOLink" name="SEOLink" placeholder="" value="@modelToUse.SEOLink" readonly />
 							</div>
 						</div>
 					</div>
@@ -58,6 +58,7 @@
 						<label for="Content" class="col-sm-2 control-label">Content</label>
 						<div class="col-sm-10">
 							<textarea class="form-control" id="Content" name="content" placeholder="Content">@(modelToUse.Content ?? "")</textarea>
+							<textarea class="form-control hide" id="ContentRaw" name="ContentRaw" placeholder="Content">@(modelToUse.ContentRaw ?? "")</textarea>
 						</div>
 					</div>
 
@@ -188,9 +189,17 @@
 					sUrl += $('#id').val();
 				}
 
-				//set the value to the content of the tinyMCE editor
-				$("#Content").val(tinymce.activeEditor.getContent());
+				var sTinyMCEContent = tinymce.activeEditor.getContent();
 
+				//set the value to the content of the tinyMCE editor
+				$("#Content").val(sTinyMCEContent);
+				
+				var sRawContent = $("<div></div>").html(sTinyMCEContent).text();
+
+				// get the raw text
+				$("#ContentRaw").val(sRawContent);
+				
+				// serialize it all
 				var ajaxData = jEventEditForm.serialize();
 
 				// the serialize method doesn't specify true or false so this is a quick fix for that

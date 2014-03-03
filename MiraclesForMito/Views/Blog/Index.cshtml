@@ -4,20 +4,25 @@
 
 @{
     ViewBag.Title = "Miracles for Mito Blog";
-	ViewBag.
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row main-page-section">
+<div class="row public-blog-container main-page-section">
 
 	<div class="col-md-12 col-lg-10 col-md-offset-0 col-lg-offset-1">
 
 		<div class="row">
+			
+			<div class="col-sm-12 col-md-4 pull-right">
+				@Html.Partial("~/Views/Blog/BlogSearchPartial.cshtml")
+				@Html.Partial("~/Views/Blog/NewsletterFormPartial.cshtml")
+				@Html.Partial("~/Views/Blog/BlogShareButtonsPartial.cshtml")
+			</div>
 
-			<div class="col-sm-12 col-md-9">
+			<div class="col-sm-12 col-md-8">
 
 				<div id="BlogPostsPaginationContainer"
-					class="pagination-container"
+					class="clear-fix pagination-container"
 					data-pageSize="@Model.PageSize"
 					data-pageIndex="@Model.PageIndex"
 					data-totalCount="@Model.TotalCount"
@@ -43,12 +48,23 @@
 
 			</div>
 
-			<div class="col-md-3 hidden-sm">
-				<h5>Sidebar modules go here</h5>
-			</div>
-
 		</div>
 
 	</div>
 
 </div>
+
+
+@section scripts
+{
+	<script type="text/javascript">
+		$(function ()
+		{
+			$("#BlogSearchForm").on("submit", function ()
+			{
+				var $form = $(this);
+				$form.attr("action", $form.attr("action") + $("#BlogSearchInput").val());
+			});
+		});
+	</script>
+}

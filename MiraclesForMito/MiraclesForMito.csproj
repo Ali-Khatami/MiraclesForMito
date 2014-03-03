@@ -283,6 +283,8 @@
     <Content Include="Content\font-awesome-4.0.3\scss\_spinning.scss" />
     <Content Include="Content\font-awesome-4.0.3\scss\_stacked.scss" />
     <Content Include="Content\font-awesome-4.0.3\scss\_variables.scss" />
+    <Content Include="Images\Help-And-Support-Miracles-For-Mito.png" />
+    <Content Include="Images\Help-Support-Love-Miracles-For-Mito-Button.png" />
     <Content Include="Views\Helpers.cshtml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Images\calvin-smile.png" />
@@ -520,6 +522,10 @@
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Blog\BlogPostsPaginationBody.cshtml" />
     <Content Include="Views\Blog\BlogSinglePostPartial.cshtml" />
+    <Content Include="Views\Blog\BlogSearchPartial.cshtml" />
+    <Content Include="Views\Blog\Post.cshtml" />
+    <Content Include="Views\Blog\NewsletterFormPartial.cshtml" />
+    <Content Include="Views\Blog\BlogShareButtonsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
