@@ -89,7 +89,7 @@ namespace MiraclesForMito.Models
 
 		private IQueryable<BlogPost> _SortAndFilterPosts()
 		{
-			IQueryable<BlogPost> posts = null;
+			IQueryable<BlogPost> posts = _DBInstance.BlogPosts.Where(post => post.Published.HasValue && post.Published.Value);
 
 			switch (this.FilterType)
 			{
@@ -97,13 +97,13 @@ namespace MiraclesForMito.Models
 					// set the total count
 					base.TotalCount = _DBInstance.BlogPosts.Count();
 
-					posts = _DBInstance.BlogPosts.OrderByDescending(post => post.UpdatedDate)
+					posts = posts.OrderByDescending(post => post.UpdatedDate)
 									.Skip(base.PageIndex.GetValueOrDefault(0) * base.PageSize.GetValueOrDefault(DEFAULT_PAGE_SIZE))
 									.Take(base.PageSize.GetValueOrDefault(DEFAULT_PAGE_SIZE));
 					break;
 				case BlogFilterType.Author:
 					// find the upcoming events
-					posts = _DBInstance.BlogPosts.Where(post => !string.IsNullOrEmpty(post.Author) && post.Author.ToLower() == this.FilterValue.ToLower());
+					posts = posts.Where(post => !string.IsNullOrEmpty(post.Author) && post.Author.ToLower() == this.FilterValue.ToLower());
 
 					// set the total count
 					base.TotalCount = posts.Count();
@@ -114,7 +114,7 @@ namespace MiraclesForMito.Models
 					break;
 				case BlogFilterType.SEOTitle:
 					// find the upcoming events
-					posts = _DBInstance.BlogPosts.Where(post => !string.IsNullOrEmpty(post.SEOLink) && post.SEOLink.ToLower() == this.FilterValue.ToLower());
+					posts = posts.Where(post => !string.IsNullOrEmpty(post.SEOLink) && post.SEOLink.ToLower() == this.FilterValue.ToLower());
 
 					// set the total count
 					base.TotalCount = posts.Count();
@@ -125,7 +125,7 @@ namespace MiraclesForMito.Models
 					break;
 				case BlogFilterType.Search:
 					// find the upcoming events
-					posts = _DBInstance.BlogPosts.Where(
+					posts = posts.Where(
 						post => (!string.IsNullOrEmpty(post.Title) && post.Title.ToLower().Contains(this.FilterValue.ToLower())) || (!string.IsNullOrEmpty(post.ContentRaw) && post.ContentRaw.ToLower().Contains(this.FilterValue.ToLower()))
 					);
 
