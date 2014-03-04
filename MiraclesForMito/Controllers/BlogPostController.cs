@@ -130,11 +130,11 @@ namespace MiraclesForMito.Controllers
 				{
 					Subject = "Miracles for Mito New Blog Post!",
 					Body = "The Miracles for Mito Blog team has posted a new blog post, <a title=\"Click here to visit the Miracles for Mito Blog\" href=\"" +
-						(VirtualPathUtility.ToAbsolute(string.Format("~/Blog/Post/{0}", post.SEOLink))) +
+						(string.Format("~/Blog/Post/{0}", post.SEOLink)).ToAbsoluteUrl() +
 					"\">" + post.Title + "</a>.<br/><br/>" +
 					@"Sincerely,<br/>
 					The Miracles for Mito Dev Team<br/><br/>" +
-					"<a href=\"" + (VirtualPathUtility.ToAbsolute(string.Format("~/Unsubscribe/{0}", SimpleCrypto.Encrypt(email)))) + "\">Click here to unsubscribe from these emails</a>",
+					"<a href=\"" + (string.Format("~/Unsubscribe/{0}", SimpleCrypto.Encrypt(email))).ToAbsoluteUrl() + "\">Click here to unsubscribe from these emails</a>",
 					IsBodyHtml = true
 				}
 			);
