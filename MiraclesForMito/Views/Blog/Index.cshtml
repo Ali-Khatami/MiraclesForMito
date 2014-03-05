@@ -63,7 +63,78 @@
 			$("#BlogSearchForm").on("submit", function ()
 			{
 				var $form = $(this);
+				$form.find("button[type=submit]").text("Searching...");
 				$form.attr("action", $form.attr("action") + $("#BlogSearchInput").val());
+			});
+
+			var $NewsletterEmailInput = $("#NewsletterEmailInput");
+			var $NewsletterForm = $("#NewsletterForm");
+
+			var addNewsletterSuccessAlert = function ()
+			{
+				// construct the fail alert HTML
+				var arAlertHTML = [
+					'<div class="hide alert alert-success alert-dismissable">',
+						'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>',
+						'<strong>Email Added!</strong> You will receive emails whenever a new blog post is added.',
+					'</div>'
+				];
+
+				// prepend the html to the form
+				$NewsletterForm.prepend(arAlertHTML.join(''));
+			};
+
+			var addNewsletterFailAlert = function ()
+			{
+				// construct the fail alert HTML
+				var arAlertHTML = [
+					'<div class="hide alert alert-danger alert-dismissable">',
+						'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>',
+						'<strong>Invalid Email!</strong> Please enter a valid email address.',
+					'</div>'
+				];
+
+				// prepend the html to the form
+				$NewsletterForm.prepend(arAlertHTML.join(''));
+			};
+
+			$NewsletterForm.on("submit", function (e)
+			{
+				// don't let the page reload
+				e.preventDefault();
+
+				var $form = $(this);
+
+				$form.find("button[type=submit]").text("Subscribing...");
+
+				// always remove the alerts
+				$form.find("div.alert-success, div.alert-danger").remove();
+
+				var sVal = $NewsletterEmailInput.val();
+
+				$.ajax({
+					url: $form.attr("action").ResolveUrl(),
+					type: "POST",
+					dataType: "json",
+					data: {
+						email: $NewsletterEmailInput.val() // email will be validated on the serverside
+					}
+				})
+				.always(function ()
+				{
+					$form.find("button[type=submit]").text("Subscribe");
+				})
+				.done(function ()
+				{
+					addNewsletterSuccessAlert();
+					$NewsletterEmailInput.val("").blur();
+					$form.find("div.alert-success").removeClass("hide");
+				})
+				.fail(function ()
+				{
+					addNewsletterFailAlert();
+					$form.find("div.alert-danger").removeClass("hide");
+				});
 			});
 		});
 	</script>
