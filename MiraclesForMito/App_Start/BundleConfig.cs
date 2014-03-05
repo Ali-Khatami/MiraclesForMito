@@ -12,10 +12,9 @@ namespace MiraclesForMito
 				new ScriptBundle("~/bundles/js/vendor").Include(
 					"~/Scripts/jquery-{version}.js",
 					"~/Scripts/jquery-ui-{version}.js",
-					"~/Scripts/jquery.color-2.1.2.min.js",
 					"~/Scripts/bootstrap.js",
 					"~/Scripts/pagination.js",
-					"~/Scripts/navigation.js",
+                    "~/Scripts/navigation.js",
 					"~/Scripts/OADate.js"
 				)
 			);
@@ -50,7 +49,7 @@ namespace MiraclesForMito
 			);
 
 			bundles.Add(
-				new StyleBundle("~/Content/vendor").Include(
+				new StyleBundle("~/Content/css/vendor").Include(
 					"~/Content/themes/base/jquery.ui.core.css",
 					"~/Content/themes/base/jquery.ui.resizable.css",
 					"~/Content/themes/base/jquery.ui.selectable.css",
