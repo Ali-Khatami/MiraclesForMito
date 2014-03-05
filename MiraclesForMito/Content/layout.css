@@ -128,8 +128,9 @@ img
 			height: 63px;
 		}
 	}
-
-	@media (max-width: 768px) {
+	
+	@media (max-width: 768px)
+	{
 		#MainNav .navbar-brand
 		{
 			padding: 0px 10px;
@@ -159,12 +160,36 @@ img
 			text-align: center;
 		}
 		
-		#MainNav .nav > li.active > a,
 		#MainNav .nav > li.active > a:hover
 		{
-			padding-bottom: 22px;
-			background-color: #3CC3A3;
-			color: #fff;
+			background-color: transparent;
+			color: #3CC3A3;
+		}
+	}
+	
+	@media (width: 768px)
+	{
+		#MainNav .navbar-header
+		{
+			border-bottom: 0 none;
+		}
+
+		#MainNav .navbar-brand,
+		#MainNav.admin .navbar-brand
+		{
+			width: 80px;
+			background: url("../Images/nav-brand-logo-smaller.png") no-repeat 10px 0px;
+		}
+
+		#MainNav > .container > .navbar-collapse
+		{
+			background-color: #fff;
+			border-bottom: 2px solid #E5E5E5; 
+		}
+
+		#MainNav div.navbar-collapse li
+		{
+			margin-bottom: 0px;
 		}
 	}
 

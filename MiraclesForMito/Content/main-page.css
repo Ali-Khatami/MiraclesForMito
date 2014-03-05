@@ -36,16 +36,14 @@
 /*Header*/
 
 div.about-page-header .fa.fa-heart-o {
-	font-size: 80px;
+	font-size: 94px;
 	display: block;
-	float: left;
-	margin-right: 20px;
 	color: #FB5267;
 }
 
 div.about-page-header p.heart-text {
 	color: #FB5267;
-	font-size: 28px;
+	font-size: 24px;
 	font-weight: bold;
 }
 
@@ -210,7 +208,11 @@ div.main-page-footer {
 
 	@media (max-width: 991px) {
 		div.about-page-header .fa.fa-heart-o {
-			font-size: 170px;
+			font-size: 95px;
+		}
+		div.about-page-header p.heart-text
+		{
+			font-size: 24px;
 		}
 		div.main-page-section div.useful-resource {
 			height: auto;
@@ -222,7 +224,32 @@ div.main-page-footer {
 	}
 
 	@media (max-width: 768px) {
-		div.about-page-header .fa.fa-heart-o {
+		div.about-page-header .fa.fa-heart-o
+		{
 			font-size: 80px;
+		}
+
+		div.about-page-header p.heart-text
+		{
+			font-size: 24px;
+		}
+
+		div.main-page-section a.block-link
+		{
+			padding: 10px;
+			font-size: 14px;
+		}
+	}
+
+	@media (max-width: 460px)
+	{
+		div.about-page-header .fa.fa-heart-o
+		{
+			font-size: 105px;
+		}
+
+		div.about-page-header p.heart-text
+		{
+			font-size: 24px;
 		}
 	}
