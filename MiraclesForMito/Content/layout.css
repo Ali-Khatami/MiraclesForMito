@@ -53,6 +53,65 @@ img
 		height: 70px;
 	}
 
+	@media (max-width: 1200px)
+	{
+		#MainNav .navbar-brand
+		{
+			padding: 0px;
+			background: url("../Images/nav-brand-logo-smaller.png") no-repeat 0px 0px;
+			width: 315px;
+			height: 63px;
+		}
+	}
+
+	@media (max-width: 991px) {
+		#MainNav .navbar-brand
+		{
+			width: 80px;
+		}
+
+		#MainNav.admin .navbar-brand
+		{
+			padding: 0px 10px;
+			background: url("../Images/nav-brand-logo-smaller.png") no-repeat 10px 0px;
+			width: 325px;
+			height: 63px;
+		}
+	}
+
+	@media (max-width: 768px) {
+		#MainNav .navbar-brand
+		{
+			padding: 0px 10px;
+			background: url("../Images/nav-brand-logo-smaller.png") no-repeat 10px 0px;
+			width: 325px;
+			height: 63px;
+		}
+
+		#MainNav .navbar-header
+		{
+			border-bottom: 1px solid #E5E5E5;
+		}
+	}
+
+	@media (max-width: 460px) {
+		#MainNav .navbar-brand,
+		#MainNav.admin .navbar-brand
+		{
+			width: 255px;
+			background: url("../Images/nav-brand-logo-smaller.png") no-repeat -63px 0px;
+		}
+	}
+
+	@media (max-width: 355px) {
+		#MainNav .navbar-brand,
+		#MainNav.admin .navbar-brand
+		{
+			width: 80px;
+			background: url("../Images/nav-brand-logo-smaller.png") no-repeat 10px 0px;
+		}
+	}
+
 	#MainNav .nav > li > a
 	{
 		padding-top: 25px;
@@ -99,89 +158,4 @@ img
 		#MainNav .nav > li.active > a:hover {
 			background-color: transparent;
 			color: #3CC3A3;
-		}
-
-		
-
-	@media (max-width: 1200px)
-	{
-		#MainNav .navbar-brand
-		{
-			padding: 0px;
-			background: url("../Images/nav-brand-logo-smaller.png") no-repeat 0px 0px;
-			width: 315px;
-			height: 63px;
-		}
-	}
-
-	@media (max-width: 991px) {
-		#MainNav .navbar-brand
-		{
-			width: 80px;
-		}
-
-		#MainNav.admin .navbar-brand
-		{
-			padding: 0px 10px;
-			background: url("../Images/nav-brand-logo-smaller.png") no-repeat 10px 0px;
-			width: 325px;
-			height: 63px;
-		}
-	}
-
-	@media (max-width: 768px) {
-		#MainNav .navbar-brand
-		{
-			padding: 0px 10px;
-			background: url("../Images/nav-brand-logo-smaller.png") no-repeat 10px 0px;
-			width: 325px;
-			height: 63px;
-		}
-
-		#MainNav .navbar-header
-		{
-			border-bottom: 1px solid #E5E5E5;
-		}
-
-		#MainNav > .container > .navbar-collapse
-		{
-			background-color: #eee;
-			border-bottom: 2px solid #E5E5E5; 
-		}
-
-		#MainNav div.navbar-collapse li
-		{
-			margin-bottom: 10px;
-		}
-
-		#MainNav .nav > li.donate > a
-		{
-			text-align: center;
-		}
-		
-		#MainNav .nav > li.active > a,
-		#MainNav .nav > li.active > a:hover
-		{
-			padding-bottom: 22px;
-			background-color: #3CC3A3;
-			color: #fff;
-		}
-	}
-
-	@media (max-width: 460px) {
-		#MainNav .navbar-brand,
-		#MainNav.admin .navbar-brand
-		{
-			width: 255px;
-			background: url("../Images/nav-brand-logo-smaller.png") no-repeat -63px 0px;
-		}
-	}
-
-	@media (max-width: 355px) {
-		#MainNav .navbar-brand,
-		#MainNav.admin .navbar-brand
-		{
-			width: 80px;
-			background: url("../Images/nav-brand-logo-smaller.png") no-repeat 10px 0px;
-		}
-	}
+		} 

@@ -1,87 +1,84 @@
 ﻿div.main-page-section {
-	margin-bottom: 40px;
+    margin-bottom: 40px;
 }
 
-	div.main-page-section h1 {
-		color: #BBDB90;
-		margin-bottom: 40px;
-	}
+    div.main-page-section h1 {
+        color: #BBDB90;
+        margin-bottom: 40px;
+    }
 
-	div.main-page-section p {
-		color: #666;
-	}
+    div.main-page-section p {
+        color: #666;
+    }
 
-	div.main-page-section a.block-link {
-		display: block;
-		color: #3CC3A3;
-		text-decoration: none;
-		font-size: 12px;
-		width: 100%;
-		padding: 2px 10px;
-		border: #3CC3A3 solid 1px;
-		margin-bottom: 10px;
-	}
+    div.main-page-section a.block-link {
+        display: block;
+        color: #3CC3A3;
+        text-decoration: none;
+        font-size: 12px;
+        width: 100%;
+        padding: 2px 10px;
+        border: #3CC3A3 solid 1px;
+        margin-bottom: 10px;
+    }
 
-		div.main-page-section a.block-link:hover {
-			background-color: #3CC3A3;
-			color: #fff;
-		}
-
-		div.main-page-section a.block-link.view-all {
-			color: #fff;
-			background-color: #3CC3A3;
-			margin-top: 4px;
-		}
+        div.main-page-section a.block-link.view-all {
+            color: #fff;
+            background-color: #3CC3A3;
+            margin-top: 4px;
+        }
 
 /*Header*/
-
-div.about-page-header .fa.fa-heart-o {
-	font-size: 80px;
-	display: block;
-	float: left;
-	margin-right: 20px;
-	color: #FB5267;
+div.about-page-header {
+    color: #FB5267;
 }
 
-div.about-page-header p.heart-text {
-	color: #FB5267;
-	font-size: 28px;
-	font-weight: bold;
-}
+    div.about-page-header h1 {
+        margin-bottom: 20px;
+        color: #FB5267;
+    }
+
+    div.about-page-header .fa.fa-heart-o {
+        font-size: 80px;
+        display: block;
+        float: left;
+        margin-right: 20px;
+        color: #FB5267;
+    }
 
 div.events-container h4 {
-	color: #3CC3A3;
-	border-bottom: 1px solid #EEEEEE;
-	padding-bottom: 8px;
-	margin-bottom:  0;
+    color: #3CC3A3;
+    border-bottom: 1px solid #EEEEEE;
+    padding-bottom: 8px;
+    margin-bottom:  0;
 }
 
 div.event-item h5 {
-	margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 div.event-item span {
-	color: #bfbfbf;
-	font-size: 11px;
-	margin: 8px 0;
-	display: block;
+    color: #bfbfbf;
+    font-size: 11px;
+    margin: 8px 0;
+    display: block;
 }
 
 /*Links*/
 div.main-page-section div.useful-resource {
-	height: 210px;
-	margin-bottom: 30px;
+    height: 210px;
+    margin-bottom: 30px;
 }
 
-	div.main-page-section div.useful-resource p.content {
-		height: 120px;
-	}
+    div.main-page-section div.useful-resource p.content {
+        height: 120px;
+    }
 
-	div.main-page-section div.useful-resource header {
-		color: #3CC3A3;
-		font-weight: bold;
-		height: 40px;
-	}
+    div.main-page-section div.useful-resource header {
+        color: #3CC3A3;
+        font-weight: bold;
+        height: 40px;
+    }
 
 /* Blog */
 
@@ -156,73 +153,54 @@ div.public-blog-container
 
 /*Footer*/
 div.main-page-footer {
-	background-color: #222;
-	color: #eee;
-	padding: 40px;
+    background-color: #222;
+    color: #eee;
+    padding: 40px;
 }
 
-	div.main-page-footer .row {
-		margin: 0px 0px 20px 0px;
-	}
+    div.main-page-footer .row {
+        margin: 0px 0px 20px 0px;
+    }
 
-	div.main-page-footer a .fa,
+    div.main-page-footer a .fa,
 	div.main-page-footer a span.glyphicon-user {
-		font-size: 2em;
-		margin: 0px 10px;
-		color: #fff;
-	}
+        font-size: 2em;
+        margin: 0px 10px;
+        color: #fff;
+    }
 
 	div.main-page-footer a span.glyphicon-user
 	{
 		font-size: 1.8em;
 	}
 
-		div.main-page-footer a:hover .fa,
+        div.main-page-footer a:hover .fa,
 		div.main-page-footer a:hover span.glyphicon-user {
-			color: #ccc;
-		}
+            color: #ccc;
+        }
 
-	div.main-page-footer .page-header {
-		margin: 0px 0px 20px 0px;
-	}
+    div.main-page-footer .page-header {
+        margin: 0px 0px 20px 0px;
+    }
 
-	div.main-page-footer form {
-		margin: 20px 0px 0px 0px;
-	}
+    div.main-page-footer form {
+        margin: 20px 0px 0px 0px;
+    }
 
-		div.main-page-footer form button[type="submit"] {
-			width: 100%;
-			background-color: #222;
-			color: #eee;
-			border-radius: 0px;
-			border-color: #27b585;
-		}
+        div.main-page-footer form button[type="submit"] {
+            width: 100%;
+            background-color: #222;
+            color: #eee;
+            border-radius: 0px;
+            border-color: #27b585;
+        }
 
-			div.main-page-footer form button[type="submit"]:hover {
-				background-color: #27b585;
-			}
+            div.main-page-footer form button[type="submit"]:hover {
+                background-color: #27b585;
+            }
 
-	div.main-page-footer .foot-notes {
-		border-top: 1px solid #ccc;
-		margin: 40px 0px 0px 0px;
-		padding: 20px 0px 0px 0px;
-	}
-
-	@media (max-width: 991px) {
-		div.about-page-header .fa.fa-heart-o {
-			font-size: 170px;
-		}
-		div.main-page-section div.useful-resource {
-			height: auto;
-		}
-
-		div.main-page-section div.useful-resource p.content {
-			height: auto;
-		}
-	}
-
-	@media (max-width: 768px) {
-		div.about-page-header .fa.fa-heart-o {
-			font-size: 80px;
-		}
-	}
+    div.main-page-footer .foot-notes {
+        border-top: 1px solid #ccc;
+        margin: 40px 0px 0px 0px;
+        padding: 20px 0px 0px 0px;
+    }
