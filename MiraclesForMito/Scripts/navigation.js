@@ -16,14 +16,14 @@ Navigation.prototype._cacheElements = function () {
 
 Navigation.prototype._bindEvents = function () {
 	this.$MainNav.on(
-        'click',
-        'a',
-        $.proxy(this._animateAnchor,this)
-    );
-    
+		'click',
+		'a',
+		$.proxy(this._animateAnchor,this)
+	);
+	
 	$(window).on(
 		"scroll.customScrollSpy",
-       $.proxy(this._handleScroll, this)
+	   $.proxy(this._handleScroll, this)
    );
 };
 
@@ -43,7 +43,7 @@ Navigation.prototype._handleScroll = function (e) {
 		var sHref = $this.attr("href");
 
 		if (sHref.indexOf("#") == 0)
-		{	
+		{
 			if (iScrollTop + iNavHeight >= $(sHref).offset().top - 50) // creating a 50 px buffer 
 			{
 				$ancActive = $this;
@@ -57,14 +57,14 @@ Navigation.prototype._handleScroll = function (e) {
 
 Navigation.prototype._animateAnchor = function (e) {	
 	var $this = $(e.currentTarget);
-    var destinationId = $this.attr("href");
-    var $destination = $(destinationId);
-    var offset;
+	var destinationId = $this.attr("href");
+	var $destination = $(destinationId);
+	var offset;
 
-    if (destinationId.indexOf("#") > -1) {
-        e.preventDefault();        
-        offset = $destination.offset();
-        $('html,body').animate(
+	if (destinationId.indexOf("#") > -1) {
+		e.preventDefault();        
+		offset = $destination.offset();
+		$('html,body').animate(
 			{ scrollTop: offset.top },
 			$.proxy(
 				this._animateAnchor_Complete,
@@ -75,8 +75,8 @@ Navigation.prototype._animateAnchor = function (e) {
 			)
 		);
 
-        return false;
-    }
+		return false;
+	}
 };
 
 Navigation.prototype._animateAnchor_Complete = function ($el, $destination, destinationId)
@@ -114,6 +114,6 @@ Navigation.prototype._blinkContainer = function ($el, sColor)
 };
 
 $(document).ready(function () {
-    var nav = new Navigation();
-    nav.init();
+	var nav = new Navigation();
+	nav.init();
 });
