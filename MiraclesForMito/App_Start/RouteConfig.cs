@@ -12,6 +12,12 @@ namespace MiraclesForMito
 		public static void RegisterRoutes(RouteCollection routes)
 		{
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+			
+			routes.MapRoute(
+				name: "Unsubscribe",
+				url: "Unsubscribe/{id}",
+				defaults: new { controller = "Home", action = "Unsubscribe", id = UrlParameter.Optional }
+			);
 
 			routes.MapRoute(
 				name: "Default",
