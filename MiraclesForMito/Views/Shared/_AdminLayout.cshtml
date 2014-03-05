@@ -4,14 +4,14 @@
 }
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	<head>
+		<meta charset="utf-8" />
+		<title>@ViewBag.Title</title>
+		<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 		<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-        @Styles.Render("~/Content/")
+		@Styles.Render("~/Content/vendor")
 		@Styles.Render("~/Content/css")
 		@Styles.Render("~/Content/css/Admin")
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -35,8 +35,8 @@
 			}
 		</script>
 		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    </head>
-    <body>
+	</head>
+	<body>
 		
 		<div id="MainNav" class="admin navbar navbar-fixed-top" role="navigation">
 			<div class="container">
@@ -88,18 +88,18 @@
 			</div>
 		</div>
 
-        <div class="container">
+		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					@RenderBody()
 				</div>
 			</div>
-        </div>
+		</div>
 		<script type="text/javascript">
 			@Html.Raw(MiraclesForMito.Utilities.Util.ResolveUrlInlineScript)
 		</script>
-        @Scripts.Render("~/bundles/js/vendor")
+		@Scripts.Render("~/bundles/js/vendor")
 		@Scripts.Render("~/bundles/js/admin")
-        @RenderSection("scripts", required: false)
-    </body>
+		@RenderSection("scripts", required: false)
+	</body>
 </html>
