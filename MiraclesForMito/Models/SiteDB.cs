@@ -15,7 +15,5 @@ namespace MiraclesForMito.Models
 		public DbSet<Event> Events { get; set; }
 
 		public DbSet<BlogPost> BlogPosts { get; set; }
-
-		public DbSet<NotifiedListItem> NotifiedList { get; set; }
 	}
 }
