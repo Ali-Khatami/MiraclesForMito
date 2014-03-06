@@ -7,7 +7,7 @@
     
     if (db.Events != null && db.Events.Count() > 0)
     {
-        mitoEvents.AddRange(db.Events.Where(e => e.StartDate.HasValue && e.StartDate.Value >= DateTime.Now));   
+        mitoEvents.AddRange(db.Events.Where(e => e.StartDate.HasValue && e.StartDate >= DateTime.Today));   
     }
 }
 

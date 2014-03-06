@@ -1,0 +1,45 @@
+﻿@model MiraclesForMito.Models.Event
+
+@{
+    var sStartDateLong = Model.StartDate.HasValue ? Model.StartDate.Value.ToString("dddd, MMMM d") : null;
+    var sStartDateShort = Model.StartDate.HasValue ? Model.StartDate.Value.ToString("ddd, MMM d") : null;
+    var sStartTime = Model.StartDate.HasValue ? Model.StartDate.Value.ToString("h:mm tt") : null;
+    var sEndDateLong = Model.EndDate.HasValue ? Model.EndDate.Value.ToString("dddd, MMMM d") : null;
+    var sEndDateShort = Model.EndDate.HasValue ? Model.EndDate.Value.ToString("ddd, MMM d") : null;
+    var sEndTime = Model.EndDate.HasValue ? Model.EndDate.Value.ToString("h:mm tt") : null;
+}
+
+<div class="event-item col-md-4">
+	<div class="well">
+		<h4>@Model.Name</h4>
+		
+        @if (!string.IsNullOrEmpty(sStartDateLong))
+        {
+            if (string.IsNullOrEmpty(sEndTime))
+            {// no end date provided
+                <p>Date: @sStartDateLong</p>
+                <p>Time: @sStartTime</p>
+            }
+            else if (sStartDateLong == sEndDateLong)
+            {// same day
+                <p>@string.Format("Date: {0}", sStartDateLong)</p>
+                <p>@string.Format("Time: {0} - {1}", sStartTime, sEndTime)</p>
+            }
+            else
+            {// multiple days
+                <p>@string.Format("Start: {0} - {1}", sStartDateShort, sStartTime)</p>
+                <p>@string.Format("End: {0} - {1}", sStartDateShort, sEndTime)</p>
+            }
+        }
+        else
+        {// date has not been set, yet
+            <p>Date: TBA</p>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.VenueName))
+        {
+            <p>Location: @Model.VenueName</p>
+        }
+        <a class="block-link" href="~/Events/Detail/@Model.ID">VIEW DETAILS</a>
+	</div>
+</div>

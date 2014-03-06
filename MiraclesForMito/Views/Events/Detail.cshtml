@@ -1,127 +1,70 @@
 ﻿@model MiraclesForMito.Models.Event
 
 @{
-    ViewBag.Title = "Detail";
+    ViewBag.Title = "Event - " + Model.Name;
+    ViewBag.IsHomePage = true;
+
+    var sStartDate = Model.StartDate.HasValue ? Model.StartDate.Value.ToString("dddd, MMMM d h:mm tt") : null;
+    var sEndDate = Model.EndDate.HasValue ? Model.EndDate.Value.ToString("dddd, MMMM d h:mm tt") : null;
 }
 
-<h2>EventDetail</h2>
-
-<fieldset>
-    <legend>Event</legend>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
+<div class="row main-page-section">
+    <div class="row">
+        <div class="col-md-12">
+            <ol class="breadcrumb">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Events", "Index")</li>
+                <li class="active">@Model.Name</li>
+            </ol>
+        </div>
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Name)
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@Model.Name</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <dl class="dl-horizontal">
+                                <dt>Description</dt>
+                                <dd>@Html.Raw(Model.Description)</dd>
+                                <dt>Location</dt>
+                                <dd>@Model.VenueName</dd>
+                                <dt>Start</dt>
+                                <dd>@sStartDate</dd>
+                                <dt>End</dt>
+                                <dd>@sEndDate</dd>
+                                <dt>Address</dt>
+                                <dd>
+                                    <address>
+                                        @Model.Address<br />
+                                        @string.Format("{0}, {1} {2}", Model.City, Model.State, Model.Zip)
+                                    </address>
+                                </dd>
+                                <dt>Contact</dt>
+                                <dd>
+                                    @Model.ContactName<br />
+                                    @Model.ContactNumber<br />
+                                    <a href="mailto:@Model.ContactEmail">@Model.ContactEmail</a>
+                                </dd>
+                                <dt>&nbsp;</dt>
+                                <dd>
+                                    @if (!string.IsNullOrEmpty(Model.RegistrationLink))
+                                    {
+                                        <a class="btn btn-primary btn-medium" target="_blank" href="@Model.RegistrationLink">Register</a>
+                                    }
+                                    else
+                                    {
+                                        @:Please check back later for the registration link.   
+                                    }
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Description)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Description)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.StartDate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.StartDate)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.StartDateMS)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.StartDateMS)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.EndDate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.EndDate)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.EndDateMS)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.EndDateMS)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.VenueName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.VenueName)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Address)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Address)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.City)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.City)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.State)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.State)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Zip)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Zip)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ContactNumber)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ContactNumber)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ContactName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ContactName)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ContactEmail)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ContactEmail)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.RegistrationLink)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.RegistrationLink)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Link)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Link)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</div>

@@ -64,6 +64,10 @@ div.event-item span {
     display: block;
 }
 
+ol.breadcrumb {
+    margin-top: 10px;
+}
+
 /*Links*/
 div.main-page-section div.useful-resource {
     height: 210px;

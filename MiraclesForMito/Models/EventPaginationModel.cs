@@ -84,7 +84,7 @@ namespace MiraclesForMito.Models
 					// set the total count
 					base.TotalCount = events.Count();
 
-					events = events.OrderByDescending(mitoEvent => mitoEvent.StartDate)
+					events = events.OrderBy(mitoEvent => mitoEvent.StartDate)
 									.Skip(base.PageIndex.GetValueOrDefault(0) * base.PageSize.GetValueOrDefault(DEFAULT_PAGE_SIZE))
 									.Take(base.PageSize.GetValueOrDefault(DEFAULT_PAGE_SIZE));
 					break;
@@ -95,7 +95,7 @@ namespace MiraclesForMito.Models
 					// set the total count
 					base.TotalCount = events.Count();
 
-					events = events.OrderByDescending(mitoEvent => mitoEvent.StartDate)
+					events = events.OrderBy(mitoEvent => mitoEvent.StartDate)
 									.Skip(base.PageIndex.GetValueOrDefault(0) * base.PageSize.GetValueOrDefault(DEFAULT_PAGE_SIZE))
 									.Take(base.PageSize.GetValueOrDefault(DEFAULT_PAGE_SIZE));
 					break;
@@ -106,7 +106,7 @@ namespace MiraclesForMito.Models
 					// set the total count
 					base.TotalCount = events.Count();
 
-					events = events.OrderByDescending(mitoEvent => mitoEvent.Name)
+					events = events.OrderBy(mitoEvent => mitoEvent.Name)
 									.Skip(base.PageIndex.GetValueOrDefault(0) * base.PageSize.GetValueOrDefault(DEFAULT_PAGE_SIZE))
 									.Take(base.PageSize.GetValueOrDefault(DEFAULT_PAGE_SIZE));
 					break;
