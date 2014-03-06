@@ -522,7 +522,6 @@
     <Content Include="Views\Home\Sections\AboutEventsPartial.cshtml" />
     <Content Include="Views\Events\Detail.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
-    <Content Include="Views\Events\IndexEventPartial.cshtml" />
     <Content Include="Views\Admin\ChangePassword.cshtml" />
     <Content Include="Views\Admin\ForgotPassword.cshtml" />
     <Content Include="Views\Admin\BlogPostsPaginationBody.cshtml" />
@@ -537,6 +536,9 @@
     <Content Include="Views\Blog\BlogShareButtonsPartial.cshtml" />
     <Content Include="Views\Home\Unsubscribe.cshtml" />
     <Content Include="Views\Shared\_BlankLayout.cshtml" />
+    <Content Include="Views\Events\EventsPaginationBody.cshtml" />
+    <Content Include="Views\Events\EventDisplayAllPartial.cshtml" />
+    <Content Include="Views\Events\EventsPaginationPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

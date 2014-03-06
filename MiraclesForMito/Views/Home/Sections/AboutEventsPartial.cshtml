@@ -1,11 +1,57 @@
 ﻿@model MiraclesForMito.Models.Event
 
+@{
+    string sStartDate = Model.StartDate.HasValue ? Model.StartDate.Value.ToString("MMM d, yyyy") : null;
+    string sLocation = Model.VenueName ?? null;
+    
+    if (string.IsNullOrEmpty(sLocation))
+    {
+        if (!string.IsNullOrEmpty(Model.City))
+        {
+            sLocation = Model.City;
+        }
+
+        if (!string.IsNullOrEmpty(Model.State))
+        {
+            if (!string.IsNullOrEmpty(sLocation))
+            {
+                sLocation += ", " + Model.State;
+            }
+            else
+            {
+                sLocation = Model.State;
+            }
+        }
+
+        if (!string.IsNullOrEmpty(Model.Zip))
+        {
+            if (!string.IsNullOrEmpty(sLocation))
+            {
+                sLocation += " " + Model.Zip;
+            }
+            else
+            {
+                sLocation = Model.Zip;
+            }
+        }
+    }
+}
+
 <div class="row">
-	<div class="event-item col-md-12 col-lg-12">
-		<h5>@Model.Name</h5>
+    <div class="event-item col-md-12 col-lg-12">
+        <h5>@Model.Name</h5>
         <span>
-            @string.Format("{0} - {1}, {2}, {3}", Model.StartDate.Value.ToString("MMM dd, yyyy"), Model.VenueName, Model.City, Model.State)
+            @sStartDate
+
+            @if (!string.IsNullOrEmpty(sStartDate) && !string.IsNullOrEmpty(sLocation))
+            {
+                @: - @sLocation
+            }
+            else
+            {
+                @sLocation
+            }
         </span>
-        <a class="block-link" href="~/EventDetail/@Model.ID">VIEW @Model.Name.ToUpper() DETAILS</a>
-	</div>
+        <a class="block-link" href="~/Events/Detail/@Model.ID">VIEW @Model.Name.ToUpper() DETAILS</a>
+    </div>
 </div>
