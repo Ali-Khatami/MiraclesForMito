@@ -1,47 +1,83 @@
-﻿@model System.Data.Entity.DbSet<MiraclesForMito.Models.Event>
+﻿@using MiraclesForMito.Models;
 
 @{
     ViewBag.Title = "Events";
-    
-    // group the archived and upcoming events
-    var archivedEvents = Model != null ? Model.Where(e => e.StartDate.HasValue && e.StartDate.Value < DateTime.Now) : null;
-    var upcomingEvents = Model != null ? Model.Where(e => !e.StartDate.HasValue || e.StartDate.Value > DateTime.Now): null;
+    ViewBag.IsHomePage = true;
+    SiteDB db = new SiteDB();
 }
 
 <div class="row main-page-section">
-	<div class="col-md-12 col-lg-10 col-md-offset-0 col-lg-offset-1">
-        @{ int index = 0; }
-		@if (archivedEvents != null && archivedEvents.Count() > 0)
-        {
-            <div>
-                <h1>Archived Events</h1>
-                
-                @foreach (var mitoEvent in archivedEvents)
-		        {
-                    Html.RenderPartial("~/Views/Events/IndexEventPartial.cshtml", mitoEvent, new ViewDataDictionary { { "index", index } });
-                    index++;
-		        }
-            </div>  
-        }    
+    <div class="row">
+        <div class="col-md-12">
+            <ol class="breadcrumb">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li class="active">Events</li>
+            </ol>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="panel-group" id="accordion">
 
-        @if (upcomingEvents != null && upcomingEvents.Count() > 0)
-        {
-            index = 0;
-            <div>
-                <h1>Upcoming Events</h1>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#PastEvents">Past Events
+                        </a>
+                    </h4>
+                </div>
+                <div id="PastEvents" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        @Html.Partial(
+                            "~/Views/Events/EventsPaginationPartial.cshtml",
+                            new EventPaginationModel(EventViewType.Archive, Model)
+                            {
+                                AJAXUrl = "~/Events/PaginateEvents"
+                            }
+                        )
+                    </div>
+                </div>
+            </div>
 
-                @foreach (var mitoEvent in upcomingEvents)
-		        {
-                    Html.RenderPartial("~/Views/Events/IndexEventPartial.cshtml", mitoEvent, new ViewDataDictionary { { "index", index } });
-                    index++;
-		        }
-            </div>  
-        }
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#UpcomingEvents">Upcoming Events
+                        </a>
+                    </h4>
+                </div>
+                <div id="UpcomingEvents" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        @Html.Partial(
+                            "~/Views/Events/EventsPaginationPartial.cshtml",
+                            new EventPaginationModel(EventViewType.Upcoming, Model)
+                            {
+                                AJAXUrl = "~/Events/PaginateEvents"
+                            }
+                        )
+                    </div>
+                </div>
+            </div>
 
-		@if (Model.Count() == 0)
-		{
-			<h3>There are currently no events scheduled.</h3>
-		}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#TBAEvents">TBA Events
+                        </a>
+                    </h4>
+                </div>
+                <div id="TBAEvents" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        @Html.Partial(
+                            "~/Views/Events/EventsPaginationPartial.cshtml",
+                            new EventPaginationModel(EventViewType.TBA, Model)
+                            {
+                                AJAXUrl = "~/Events/PaginateEvents"
+                            }
+                        )
+                    </div>
+                </div>
+            </div>
 
-	</div>
+        </div>
+    </div>
 </div>
